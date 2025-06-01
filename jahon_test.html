@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+  <meta charset="UTF-8">
+  <title>Test - Jahon tarixi</title>
+  <link rel="website icon" type="png" href="v_t.jpg">
+  <style>
+    body { font-family: sans-serif; background: #f0f0f0; padding: 40px; }
+    .box { background: #fff; padding: 20px; border-radius: 8px; max-width: 500px; margin: auto; box-shadow: 0 0 10px rgba(0,0,0,0.1); text-align: center;}
+    h2 { text-align: center; }
+    button { padding: 10px 20px; background: #28a745; color: white; border: none; border-radius: 6px; cursor: pointer; }
+    button:hover { background: #218838; }
+
+    input[type="radio"] {
+      display: none;
+    }
+    input[type="radio"]:checked + label {
+      background-color: #4CAF50;
+      color: white;
+      padding: 5px 10px;
+      border-radius: 5px;
+    }
+
+    #testCount {
+      width: 250px;
+      height: 30px;
+      font-size: 16px;
+      margin-top: 10px;
+    }
+    .btn-center-start {
+      text-align: center;
+    }
+    .center-box-theme {
+      display: inline-block;
+      width: 250px;
+      text-align: left;
+      border-radius: 15px;
+      border: 2px solid white;
+      font-size: 16px;
+    }
+    .btn-start {
+      width: 200px;
+      height: 40px;
+      border-radius: 15px;
+      border: none;
+      font-size: 17px;
+    }
+    .left-icon {
+      text-align: left;
+      position: absolute;
+      top: 60px;
+    }
+    .svg-back-button {
+      width: 29px;
+      height: 29px;
+      text-align: left;
+      cursor: pointer;
+    }
+    .svg-back-button:hover {
+      filter: brightness(1.8);
+    }
+  </style>
+</head>
+<body>
+
+<div class="box">
+  <div class="left-icon">
+    <svg onclick="window.location.href='test_subject.html'" class="svg-back-button" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+    <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5 3 12m0 0 7.5-7.5M3 12h18" />
+
+    </svg>
+  </div>
+
+  <h2 style="color: red;">Jahon tarixi!!!</h2>
+  <h3 style="color: red;">3 ta mavzuni tanlang:</h3>
+
+  <hr>
+  
+  <div class="center-box-theme">
+    <label><input type="checkbox" name="mavzu" value="periney"> Periner yarim oroli</label><br>
+    <label><input type="checkbox" name="mavzu" value="rus"> Rus knyazligida ijtimoiy-siyosiy hayot</label><br>
+    <label><input type="checkbox" name="mavzu" value="bolqon"> Bolqon yarim oroli</label><br>
+    <label><input type="checkbox" name="mavzu" value="uch"> Uch qit'ani birlashtirgan sultonlik</label><br>
+    <label><input type="checkbox" name="mavzu" value="eron"> O'rta asrlarda(Eron)</label><br>
+    <label><input type="checkbox" name="mavzu" value="oltin"> Oltin O'rda xonligi</label><br>
+    <label><input type="checkbox" name="mavzu" value="hindiston"> O'rta asrlarda Hindiston</label><br>
+    <label><input type="checkbox" name="mavzu" value="xitoy"> O'rta asrlarda Xitoy</label><br>
+    <label><input type="checkbox" name="mavzu" value="yaponiya"> O'rta asrlarda Yaponiya va Koreya</label><br>
+    <label><input type="checkbox" name="mavzu" value="afrika"> O'rta asrlarda Afrika</label><br>
+    <label><input type="checkbox" name="mavzu" value="amerika"> Amerika xalqlari</label><br>
+    <label><input type="checkbox" name="mavzu" value="yevropa"> O'rta asrlarda Yevropa aholisini kundalik hayoti</label><br>
+    <label><input type="checkbox" name="mavzu" value="memor"> Yevropada me'morchilik va san'at</label><br>
+    <label><input type="checkbox" name="mavzu" value="iqdisod"> XIII - XV asrlarda Yevropa iqtisodi</label><br>
+    <label><input type="checkbox" name="mavzu" value="ilm"> Yevropada ilm-fan</label><br>
+    <label><input type="checkbox" name="mavzu" value="davr"> Ilk uyg'onish davr madaniyati</label><br>
+
+  </div>
+
+  <hr>
+
+  <label style="font-size: 20px; color: red;"><strong>Test soni:</strong><br>
+    <select id="testCount">
+      <option value="10">10</option>
+      <option value="15">15</option>
+    </select>
+  </label><br><br>
+
+  <hr>
+
+  <div class="btn-center-start">
+    <button class="btn-start">BOSHLASH</button>
+  </div>
+</div>
+
+<script>
+  // Array ichidagi testlar
+  let testData = {
+    periney: [
+      { savol: "Arablar Periney yarim orolini nechinchi yillarda bosib olingan", variantlar: ["718-729-yillarda", "700-702-yillarda", "711-714-yillarda", "To'g'ri javob yo'q"], javob: "711-714-yillarda" },
+      { savol: "XII-asrda periney yarim orolida qaysi davlatlar bo'lgan?", variantlar: ["Ispaniya, Portugaliya, Navara", "Kastiliya, Navara, Aragon, Portugaliya", "Portugaliya, Navara, Kastiliya", "Ispaniya"], javob: "Kastiliya, Navara, Aragon, Portugaliya" },
+      { savol: "Ispaniya ichida nechta davlat bo'lgan", variantlar: ["1", "2", "4", "3"], javob: "3" },
+      { savol: "'Kastiliya, Portugaliya, Aragon, Navar' - bu davlatlarning eng yirigi va kattasi qaysi bo'lgan?", variantlar: ["Portugaliya", "Navara", "Kastiliya", "Aragon"], javob: "Kastiliya" },
+      { savol: "Arablar birinchi marta periney yarim oroliga yurush qilganda qaysi qirollikni bosib olgan", variantlar: ["Vispot", "Kastiliya", "Aragon", "To'g'ri javob keltirilmagan"], javob: "Vispot" },
+      { savol: "Periney yarim orolida birinchi mustaqil davlat nechinchi yilda ajrali chiqdi?", variantlar: ["756-yil", "757-yil", "780-yil", "760-yil"], javob: "756-yil" },
+      { savol: "Konkista nima?", variantlar: ["Arablarning pul birligi", "Arablar bosib olgan yerni ozod qilish harakati", "Ispaniya bosib olgan yerni ozod qilish harakati", "To'g'ri javob yo'q"], javob: "Arablar bosib olgan yerni ozod qilish harakati" },
+      { savol: "Periney yarim orolida Granada nomli davlat nechinchi yilda tashkil topdi?", variantlar: ["1238-yil", "1200-yil", "1230-yil", "1239-yil"], javob: "1238-yil" },
+      { savol: "Qaysi davlat  Yevropadagi eng birinchi islom davlati hisoblangan?", variantlar: ["Granada", "Kastiliya", "Ispaniya", "Aragon"], javob: "Granada" },
+      { savol: "Navara davlati nechinchi yilda tashkil topgan?", variantlar: ["905-yil", "900-yil", "906-yil", "700-yil"], javob: "905-yil" },
+      { savol: "Navara davlatining poytaxti qaysi shahar?", variantlar: ["Granada", "Pompilona", "Navar", "Poytaxti yo'q"], javob: "Pompilona" },
+      { savol: "1502-yilda Navarani qaysi davlat bosib olgan?", variantlar: ["Portugaliya", "Ispaniya", "Aragon", "Granada"], javob: "Aragon" },
+      { savol: "Kastiliya qirolini kim?", variantlar: ["Genrix III de Trastamara", "Klavixo", "A.Temur", "Genrix IV"], javob: "Genrix III de Trastamara" },
+      { savol: "Petro Kabral ismli shaxs nechinchi yilda Braziliyani yaratgan?", variantlar: ["1600-yil", "1500-yil", "1800-yil", "1000-yil"], javob: "1500-yil" },
+      { savol: "Navara davlati nechinchi yilda parchalangan?", variantlar: ["1500-yil", "1200-yil", "1512-yil", "1505-yil"], javob: "1512-yil" }
+
+    ],
+    rus: [
+      { savol: "1/2 + 1/2 = ?", variantlar: ["1", "2", "3/2"], javob: "1" },
+      { savol: "3/4 - 1/4 = ?", variantlar: ["2/4", "1/2", "3/2"], javob: "2/4" }
+    ],
+    bolqon: [
+      { savol: "2^3 = ?", variantlar: ["6", "8", "9"], javob: "8" },
+      { savol: "3^2 = ?", variantlar: ["6", "9", "12"], javob: "9" }
+    ]
+  };
+
+  document.querySelector('.btn-start').addEventListener('click', () => {
+    const selectedTopics = Array.from(document.querySelectorAll('input[name="mavzu"]:checked')).map(cb => cb.value);
+    const testCount = parseInt(document.getElementById("testCount").value);
+
+    if (selectedTopics.length === 0) {
+      alert("Iltimos kamida 1 ta mavzu tanlang!");
+      return;
+    } else if (selectedTopics.length > 3) {
+      alert("Faqat 3 tagacha mavzu tanlash mumkin!");
+      return;
+    }
+
+    let allTests = [];
+    selectedTopics.forEach(topic => {
+      if (testData[topic]) allTests = allTests.concat(testData[topic]);
+    });
+
+    allTests.sort(() => Math.random() - 0.5);
+    const selectedTests = allTests.slice(0, testCount);
+
+    localStorage.setItem('selectedTests', JSON.stringify(selectedTests));
+    window.location.href = 'math.html';
+  });
+</script>
+
+</body>
+</html>
