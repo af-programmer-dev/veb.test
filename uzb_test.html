@@ -1,0 +1,766 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+  <meta charset="UTF-8">
+  <title>Test - O'zbekiston tarixi</title>
+  <link rel="website icon" type="png" href="v_t.jpg">
+  <style>
+    body { font-family: sans-serif; background: #f0f0f0; padding: 40px; }
+    .box { background: #fff; padding: 20px; border-radius: 8px; max-width: 500px; margin: auto; box-shadow: 0 0 10px rgba(0,0,0,0.1); text-align: center;}
+    h2 { text-align: center; }
+    button { padding: 10px 20px; background: #28a745; color: white; border: none; border-radius: 6px; cursor: pointer; }
+    button:hover { background: #218838; }
+
+    input[type="radio"] {
+      display: none;
+    }
+    input[type="radio"]:checked + label {
+      background-color: #4CAF50;
+      color: white;
+      padding: 5px 10px;
+      border-radius: 5px;
+    }
+
+    #testCount {
+      width: 250px;
+      height: 30px;
+      font-size: 16px;
+      margin-top: 10px;
+    }
+    .btn-center-start {
+      text-align: center;
+    }
+    .center-box-theme {
+      display: inline-block;
+      width: 250px;
+      text-align: left;
+      border-radius: 15px;
+      border: 2px solid white;
+      font-size: 16px;
+    }
+    .btn-start {
+      width: 200px;
+      height: 40px;
+      border-radius: 15px;
+      border: none;
+      font-size: 17px;
+    }
+    .left-icon {
+      text-align: left;
+      position: absolute;
+      top: 60px;
+    }
+    .svg-back-button {
+      width: 29px;
+      height: 29px;
+      text-align: left;
+      cursor: pointer;
+    }
+    .svg-back-button:hover {
+      filter: brightness(1.8);
+    }
+  </style>
+</head>
+<body>
+
+<div class="box">
+  <div class="left-icon">
+    <svg onclick="window.location.href='test_subject.html'" class="svg-back-button" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+    <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5 3 12m0 0 7.5-7.5M3 12h18" />
+
+    </svg>
+  </div>
+
+  <h2 style="color: red;">O'zbekiston tarixi!!!</h2>
+  <h3 style="color: red;">3 ta mavzuni tanlang:</h3>
+
+  <hr>
+  
+  <div class="center-box-theme">
+    <label><input type="checkbox" name="mavzu" value="xorazm"> XIII asr boshlarida Xorazmshohlar davlati</label><br>
+    <label><input type="checkbox" name="mavzu" value="jaloliddin"> Jaloliddin Manguberdi va davlatning tiklash yo'lida</label><br>
+    <label><input type="checkbox" name="mavzu" value="ulus"> Chig'atoy ulusi</label><br>
+    <label><input type="checkbox" name="mavzu" value="ilm"> XIII - XIV asr birinchi yarmida ilm-fan</label><br>
+    <label><input type="checkbox" name="mavzu" value="amirTemur"> Amir Temur va Temuriylar davri</label><br>
+    <label><input type="checkbox" name="mavzu" value="ulugbek"> Mirzo Ulug'bek</label><br>
+    <label><input type="checkbox" name="mavzu" value="memorchilik"> Memorchilik, Xattotlik va Miniatyura</label><br>
+    <label><input type="checkbox" name="mavzu" value="navoiy"> Alisher Navoiy</label><br><br>
+  </div>
+
+  <hr>
+
+  <label style="font-size: 20px; color: red;"><strong>Test soni:</strong><br>
+    <select id="testCount">
+      <option value="10">10</option>
+      <option value="15">15</option>
+    </select>
+  </label><br><br>
+
+  <hr>
+
+  <div class="btn-center-start">
+    <button class="btn-start">BOSHLASH</button>
+  </div>
+</div>
+
+<script>
+  // Array ichidagi testlar
+  let testData = {
+    xorazm: [
+  {
+    savol: "Xorazmshohlar davlati qaysi asrda kuchga erishgan?",
+    variantlar: ["XIII asr boshlarida", "XII asr oxirida", "XIV asr boshlarida", "XV asrda"],
+    javob: "XIII asr boshlarida"
+  },
+  {
+    savol: "Xorazmshohlar davlati qaysi hududni egallagan?",
+    variantlar: ["Markaziy Osiyo va Eron", "Yevropa", "Sharqiy Osiyo", "Shimoliy Afrika"],
+    javob: "Markaziy Osiyo va Eron"
+  },
+  {
+    savol: "Xorazmshohlar davlatining poytaxti qaysi shahar edi?",
+    variantlar: ["Xiva", "Buxoro", "Urganch", "Samarkand"],
+    javob: "Urganch"
+  },
+  {
+    savol: "Xorazmshohlar davlati qachon Mongollar tomonidan bosib olindi?",
+    variantlar: ["1219-1221 yillarda", "1100-1110 yillarda", "1300-1310 yillarda", "1250-1260 yillarda"],
+    javob: "1219-1221 yillarda"
+  },
+  {
+    savol: "Xorazmshohlar davlatining bosh hukmdori qanday atalgan?",
+    variantlar: ["Shah", "Xon", "Shahzoda", "Xonxoja"],
+    javob: "Shah"
+  },
+  {
+    savol: "Xorazmshohlik davrida qaysi mashhur hukmdor hukmronlik qilgan?",
+    variantlar: ["Alpomish", "Muhammad Xorazmshoh", "Temur", "Chingizxon"],
+    javob: "Muhammad Xorazmshoh"
+  },
+  {
+    savol: "Xorazmshohlar davlati iqtisodiy jihatdan nimaga asoslangan edi?",
+    variantlar: ["Savdo va qishloq xo‘jaligi", "Sanoat", "Qimor o‘yinlari", "Chaqaloqlarni tarbiyalash"],
+    javob: "Savdo va qishloq xo‘jaligi"
+  },
+  {
+    savol: "Xorazmshohlar davlati qaysi davlatlar bilan savdo aloqalarini olib borgan?",
+    variantlar: ["Xitoy va Yevropa", "Shimoliy Amerika", "Afrika", "Avstraliya"],
+    javob: "Xitoy va Yevropa"
+  },
+  {
+    savol: "Mongollar Xorazmshohlar davlatiga nima sababdan bostirib kirishdi?",
+    variantlar: ["Diplomatik munosabatlar buzilgani", "Yangi hudud egallash uchun", "Qishloq qurish uchun", "Savdo to‘xtatilgani uchun"],
+    javob: "Diplomatik munosabatlar buzilgani"
+  },
+  {
+    savol: "Xorazmshohlar davlati qanday siyosiy tuzilishga ega edi?",
+    variantlar: ["Markazlashgan monarxiya", "Federal davlat", "Respublika", "Demokratiya"],
+    javob: "Markazlashgan monarxiya"
+  },
+  {
+    savol: "Xorazmshohlar davlati qaysi dinni rasmiy din sifatida qabul qilgan?",
+    variantlar: ["Islom", "Nasroniylik", "Budizm", "Yahudiylik"],
+    javob: "Islom"
+  },
+  {
+    savol: "Xorazmshohlar davlati qachon va qanday sabab bilan qulab tushdi?",
+    variantlar: ["1220-yillarda Mongol bosqini tufayli", "1300-yillarda ichki nizolar tufayli", "1400-yillarda chet el bosqini tufayli", "1200-yillarda tabiiy ofatlar tufayli"],
+    javob: "1220-yillarda Mongol bosqini tufayli"
+  },
+  {
+    savol: "Xorazmshohlar davlati qaysi madaniy merosga ega edi?",
+    variantlar: ["Islom madaniyati", "Xitoy madaniyati", "Yevropa madaniyati", "Hind madaniyati"],
+    javob: "Islom madaniyati"
+  },
+  {
+    savol: "Xorazmshohlar davlati davrida qaysi fanlar rivojlangan?",
+    variantlar: ["Tabiiy fanlar va tibbiyot", "Astronomiya va matematika", "Fizika va kimyo", "Axborot texnologiyalari"],
+    javob: "Tabiiy fanlar va tibbiyot"
+  },
+  {
+    savol: "Xorazmshohlar davlatining ijtimoiy tuzilmasida kimlar muhim rol o‘ynagan?",
+    variantlar: ["Sulton va boylar", "Dehqonlar", "Hunarmandlar", "Oddiy aholi"],
+    javob: "Sulton va boylar"
+  }
+],
+
+
+    jaloliddin: [
+  {
+    savol: "Jaloliddin Manguberdi kim edi?",
+    variantlar: ["Xorazmshoh Muhammadning o‘g‘li", "Temurning o‘g‘li", "Chingizxonning jiyani", "Sulton Alpomishning o‘g‘li"],
+    javob: "Xorazmshoh Muhammadning o‘g‘li"
+  },
+  {
+    savol: "Jaloliddin Manguberdi qachon hukmronlik qilgan?",
+    variantlar: ["1220-1231 yillar", "1210-1220 yillar", "1235-1245 yillar", "1200-1210 yillar"],
+    javob: "1220-1231 yillar"
+  },
+  {
+    savol: "Jaloliddinning davlatni tiklashdagi asosiy maqsadi nima edi?",
+    variantlar: ["Xorazmshohlar davlatini qayta tiklash", "Mongollar bilan ittifoq tuzish", "Yangi hududlarni egallash", "Savdo aloqalarini yaxshilash"],
+    javob: "Xorazmshohlar davlatini qayta tiklash"
+  },
+  {
+    savol: "Jaloliddin qaysi davlatga bosh qo‘shdi va undan yordam oldi?",
+    variantlar: ["G‘uriyonlar", "Eron", "Rum", "Qoraxoniylar"],
+    javob: "G‘uriyonlar"
+  },
+  {
+    savol: "Jaloliddin Manguberdi qayerda jang qilib mashhur bo‘ldi?",
+    variantlar: ["Parvon va G‘urbat hududlarida", "Buxoro va Samarqand", "Xiva va Urganch", "Bag‘dod va Damashq"],
+    javob: "Parvon va G‘urbat hududlarida"
+  },
+  {
+    savol: "Jaloliddinning boshqaruvida davlat qay tarzda boshqarilgan edi?",
+    variantlar: ["Markazlashgan monarxiya", "Federal tizim", "Senat boshqaruvi", "Demokratiya"],
+    javob: "Markazlashgan monarxiya"
+  },
+  {
+    savol: "Jaloliddin Manguberdi kimlar bilan kurash olib bordi?",
+    variantlar: ["Mongol bosqinchilari", "Rumiylar", "Saljuqlar", "Nasroniylar"],
+    javob: "Mongol bosqinchilari"
+  },
+  {
+    savol: "Jaloliddin Manguberdi qachon va qayerda halok bo‘lgan?",
+    variantlar: ["1231 yilda, Hindistonda", "1225 yilda, Xorazmda", "1240 yilda, Samarqandda", "1235 yilda, Buxoroda"],
+    javob: "1231 yilda, Hindistonda"
+  },
+  {
+    savol: "Jaloliddinning davlatni tiklashdagi harakati qanday natija berdi?",
+    variantlar: ["Qisqa muddatli muvaffaqiyatga erishdi", "Davlatni butunlay tikladi", "Mag‘lub bo‘ldi va mamlakat yo‘qoldi", "Hech qanday natija bo‘lmadi"],
+    javob: "Qisqa muddatli muvaffaqiyatga erishdi"
+  },
+  {
+    savol: "Jaloliddin Manguberdi davlat boshqaruviga qanday yondashuvni ilgari surdi?",
+    variantlar: ["Mustahkam mudofaa va kuchli harbiy tizim", "Iqtisodiy bo‘yicha erkin bozor", "Diplomatiyada uzoq muddatli ittifoq", "Qishloq xo‘jaligini rivojlantirish"],
+    javob: "Mustahkam mudofaa va kuchli harbiy tizim"
+  },
+  {
+    savol: "Jaloliddinning jangovar uslubi qanday edi?",
+    variantlar: ["Tezkor va strategik yurishlar", "Sekin va ehtiyotkor", "Faqat mudofaa", "Faqat hujumkor"],
+    javob: "Tezkor va strategik yurishlar"
+  },
+  {
+    savol: "Jaloliddinning davlatni tiklashdagi faoliyati nimaga qaramay davom etdi?",
+    variantlar: ["Mongol bosqinlarining kuchayishiga", "Rumiylar bilan tinchlikka", "Ichki nizolarga", "Savdo to‘xtab qolishiga"],
+    javob: "Mongol bosqinlarining kuchayishiga"
+  },
+  {
+    savol: "Jaloliddinning davlatni tiklash yo‘lida qaysi hududda janglar ko‘p bo‘lib o‘tgan?",
+    variantlar: ["O‘rta Osiyo va Hindiston chegarasi", "Yevropa hududlari", "Shimoliy Afrika", "Qora dengiz sohillari"],
+    javob: "O‘rta Osiyo va Hindiston chegarasi"
+  },
+  {
+    savol: "Jaloliddin Manguberdi qaysi madaniy an’anani davom ettirdi?",
+    variantlar: ["Islom madaniyatini", "Nasroniylik an’analarini", "Budizm an’analarini", "Hinduizm an’analarini"],
+    javob: "Islom madaniyatini"
+  },
+  {
+    savol: "Jaloliddinning davlatni tiklashdagi sa’y-harakatlari nimani ko‘rsatadi?",
+    variantlar: ["Mustaqillik va ozodlik uchun kurash", "Savdo sohasidagi rivojlanish", "Diplomatik siyosatdagi muvaffaqiyat", "Ilm-fan sohasidagi yutuqlar"],
+    javob: "Mustaqillik va ozodlik uchun kurash"
+  }
+],
+
+
+    ulus:  [
+  {
+    savol: "Chig‘atoy Ulusi kim tomonidan tashkil etilgan?",
+    variantlar: ["Chingizxonning o‘g‘li Chig‘atoy", "Temur", "Jaloliddin Manguberdi", "O‘g‘uzxon"],
+    javob: "Chingizxonning o‘g‘li Chig‘atoy"
+  },
+  {
+    savol: "Chig‘atoy Ulusi qaysi hududni o‘z ichiga olgan?",
+    variantlar: ["Markaziy Osiyo va Sharqiy Turkiston", "Yevropa", "Shimoliy Hindiston", "Shimoliy Afrika"],
+    javob: "Markaziy Osiyo va Sharqiy Turkiston"
+  },
+  {
+    savol: "Chig‘atoy Ulusi qachon tashkil topgan?",
+    variantlar: ["XIII asr o‘rtalarida", "XII asr oxirida", "XIV asr boshlarida", "XV asrda"],
+    javob: "XIII asr o‘rtalarida"
+  },
+  {
+    savol: "Chig‘atoy Ulusining poytaxti qaysi shahar edi?",
+    variantlar: ["Almalik", "Buxoro", "Samarkand", "Urganch"],
+    javob: "Almalik"
+  },
+  {
+    savol: "Chig‘atoy Ulusi qaysi davlatning qismi bo‘lgan?",
+    variantlar: ["Mo‘g‘ullar imperiyasi", "Xorazmshohlar davlati", "Temuriylar imperiyasi", "Saljuqiylar"],
+    javob: "Mo‘g‘ullar imperiyasi"
+  },
+  {
+    savol: "Chig‘atoy Ulusining asosiy iqtisodiy faoliyati nima edi?",
+    variantlar: ["Qishloq xo‘jaligi va savdo", "Sanoat ishlab chiqarish", "Dengiz savdosi", "Zararkunanda ovlash"],
+    javob: "Qishloq xo‘jaligi va savdo"
+  },
+  {
+    savol: "Chig‘atoy Ulusi kim tomonidan boshqarilgan?",
+    variantlar: ["Chig‘atoyxonlar", "Temuriylar", "Saljuqlar", "Xorazmshohlar"],
+    javob: "Chig‘atoyxonlar"
+  },
+  {
+    savol: "Chig‘atoy Ulusi qaysi asosiy diniy oqimga mansub edi?",
+    variantlar: ["Islom", "Nasroniylik", "Budizm", "Yahudiylik"],
+    javob: "Islom"
+  },
+  {
+    savol: "Chig‘atoy Ulusi qaysi davlat bilan tez-tez urushlarda bo‘lgan?",
+    variantlar: ["Ilxo‘r davlat", "Xitoy", "Rumiylar", "Hindiston sultonligi"],
+    javob: "Ilxo‘r davlat"
+  },
+  {
+    savol: "Chig‘atoy Ulusining siyosiy tuzilishi qanday edi?",
+    variantlar: ["Feodal bo‘linish", "Markazlashgan monarxiya", "Respublika", "Demokratiya"],
+    javob: "Feodal bo‘linish"
+  },
+  {
+    savol: "Chig‘atoy Ulusi qachon qulab tushgan?",
+    variantlar: ["XIV asr oxiri", "XIII asr boshida", "XV asr boshida", "XII asr o‘rtalarida"],
+    javob: "XIV asr oxiri"
+  },
+  {
+    savol: "Chig‘atoy Ulusining qulashiga sabab bo‘lgan omil nima edi?",
+    variantlar: ["Ichki nizolar va tashqi bosqinlar", "Savdo to‘xtashi", "Tabiiy ofatlar", "Iqtisodiy siyosatdagi muvaffaqiyatsizlik"],
+    javob: "Ichki nizolar va tashqi bosqinlar"
+  },
+  {
+    savol: "Chig‘atoy Ulusi hududida qaysi madaniy rivojlanish yuz berdi?",
+    variantlar: ["Islom madaniyati va ilm-fan", "Yevropa madaniyati", "Xitoy madaniyati", "Afrika madaniyati"],
+    javob: "Islom madaniyati va ilm-fan"
+  },
+  {
+    savol: "Chig‘atoy Ulusi qaysi yo‘l orqali savdo-sotiqni rivojlantirdi?",
+    variantlar: ["Buyuk Ipak Yo‘li", "Volga savdo yo‘li", "Bosphor yo‘li", "Qora dengiz yo‘li"],
+    javob: "Buyuk Ipak Yo‘li"
+  },
+  {
+    savol: "Chig‘atoy Ulusi kimlarga qarshi kurash olib bordi?",
+    variantlar: ["Ilxo‘r va Mo‘g‘ul bosqinchilariga", "Rumiylarga", "Nasroniylarga", "Saljuqlarga"],
+    javob: "Ilxo‘r va Mo‘g‘ul bosqinchilariga"
+  }
+],
+
+
+ilm:  [
+  {
+    savol: "XIII–XIV asrlar ilm-fanining rivojlanishiga eng katta ta'sir qilgan madaniyat qaysi edi?",
+    variantlar: ["Islom madaniyati", "Yevropa madaniyati", "Xitoy madaniyati", "Hind madaniyati"],
+    javob: "Islom madaniyati"
+  },
+  {
+    savol: "XIII asrda ilm-fan sohasida faoliyat yuritgan buyuk olim kim edi?",
+    variantlar: ["Al-Beruniy", "Ibn Sino", "Ulug‘bek", "Ibn Xaldun"],
+    javob: "Ulug‘bek"
+  },
+  {
+    savol: "Ulug‘bekning asosiy ilmiy ishlari qaysi sohada bo‘lgan?",
+    variantlar: ["Astronomiya", "Fizika", "Kimyo", "Tabiatshunoslik"],
+    javob: "Astronomiya"
+  },
+  {
+    savol: "XIII asrda ilm-fan rivojlangan yirik markaz qaysi edi?",
+    variantlar: ["Samarqand", "Bag‘dod", "Buxoro", "Xiva"],
+    javob: "Samarqand"
+  },
+  {
+    savol: "XIII–XIV asrlarda ilm-fan rivojida qaysi soha ko‘proq rivojlangan edi?",
+    variantlar: ["Matematika va astronomiya", "Fizika va kimyo", "Tibbiyot va biologiya", "Adabiyot va falsafa"],
+    javob: "Matematika va astronomiya"
+  },
+  {
+    savol: "XIII–XIV asrlarda ilmiy asarlarni qaysi tilga ko‘proq tarjima qilishgan?",
+    variantlar: ["Arabcha va forscha", "Lotincha", "Ruscha", "Xitoycha"],
+    javob: "Arabcha va forscha"
+  },
+  {
+    savol: "XIII–XIV asrda ilm-fan rivojiga kimlar asosiy hissa qo‘shgan?",
+    variantlar: ["Ilm-fan olimlari va davlat homiylari", "Faqat podshohlar", "Faqat oddiy aholi", "Faqat xorijlik sayyohlar"],
+    javob: "Ilm-fan olimlari va davlat homiylari"
+  },
+  {
+    savol: "XIII–XIV asrlar ilm-fanida qaysi ixtirolar yuzaga kelgan?",
+    variantlar: ["Aniq asboblar va astronomik jadval", "Elektr energiyasi", "Nuklear qurol", "Komp’yuter"],
+    javob: "Aniq asboblar va astronomik jadval"
+  },
+  {
+    savol: "Ulug‘bek rasadxonasining joylashgan shahri qaysi edi?",
+    variantlar: ["Samarqand", "Buxoro", "Xiva", "Toshkent"],
+    javob: "Samarqand"
+  },
+  {
+    savol: "XIII–XIV asrlarda ilm-fan rivojiga ta'sir ko‘rsatgan ijtimoiy omil nima edi?",
+    variantlar: ["Davlat homiyligi va ilmga qiziqish", "Faqat iqtisodiy krizis", "Tabiiy ofatlar", "Savdo yo‘llarining yopilishi"],
+    javob: "Davlat homiyligi va ilmga qiziqish"
+  },
+  {
+    savol: "Ulug‘bekning qaysi asari matematika va astronomiya sohasida mashhur?",
+    variantlar: ["Zij-i Ulug‘bek", "Qonun al-Mulk", "Almagest", "Kitob al-Jabr"],
+    javob: "Zij-i Ulug‘bek"
+  },
+  {
+    savol: "XIII–XIV asrlarda ilm-fan taraqqiyotiga qanday cheklovlar ta'sir qilgan?",
+    variantlar: ["Siyosiy beqarorlik va urushlar", "Texnologik rivojlanish", "Tinchlik va barqarorlik", "Savdo rivojlanishi"],
+    javob: "Siyosiy beqarorlik va urushlar"
+  },
+  {
+    savol: "XIII–XIV asrda ilmiy bilimlarni saqlash va uzatishda qanday vositalar ishlatilgan?",
+    variantlar: ["Qo‘lyozmalar va maktablar", "Elektron kitoblar", "Kino va televidenie", "Radio va internet"],
+    javob: "Qo‘lyozmalar va maktablar"
+  },
+  {
+    savol: "XIII–XIV asrda ilm-fanning qaysi yo‘nalishi keyinchalik Yevropada rivojlandi?",
+    variantlar: ["Matematika va astronomiya", "Muqaddas tarix", "San’at va musiqiy nazariya", "Adabiyot va she’riyat"],
+    javob: "Matematika va astronomiya"
+  },
+  {
+    savol: "XIII–XIV asrlarda ilm-fan rivojiga davlat homiylari nima sababdan muhim edi?",
+    variantlar: ["Ular ilm-fanga mablag‘ ajratdi va qo‘llab-quvvatladi", "Faqat askar tayyorlashga qiziqdi", "Faqat savdogarlar bilan ishladi", "Faqat madaniyatni yoqladi"],
+    javob: "Ular ilm-fanga mablag‘ ajratdi va qo‘llab-quvvatladi"
+  }
+],
+
+
+  amirTemur: [
+  {
+    savol: "Amir Temur qachon tug‘ilgan?",
+    variantlar: ["1336 yil", "1405 yil", "1300 yil", "1355 yil"],
+    javob: "1336 yil"
+  },
+  {
+    savol: "Amir Temur qaysi hududda vujudga kelgan?",
+    variantlar: ["Movarounnahr", "Xorazm", "Hindiston", "Rumiylar davlati"],
+    javob: "Movarounnahr"
+  },
+  {
+    savol: "Amir Temurning asosiy maqsadi nima edi?",
+    variantlar: ["Markaziy Osiyoda yagona kuchli davlat yaratish", "Yevropani zabt etish", "Xitoyni egallash", "Arab mamlakatlarini boshqarish"],
+    javob: "Markaziy Osiyoda yagona kuchli davlat yaratish"
+  },
+  {
+    savol: "Amir Temur qaysi jangda eng mashhur g‘alabani qo‘lga kiritgan?",
+    variantlar: ["Angor (Anqara) jangi", "Xarabalik jangi", "Qilichbozlik jangi", "Buxoro jangi"],
+    javob: "Angor (Anqara) jangi"
+  },
+  {
+    savol: "Amir Temur davlatini qanday nomlashadi?",
+    variantlar: ["Temuriylar davlati", "Mo‘g‘ullar imperiyasi", "Saljuqiylar davlati", "Xorazmshohlar davlati"],
+    javob: "Temuriylar davlati"
+  },
+  {
+    savol: "Amir Temur kimning avlodidir?",
+    variantlar: ["Turk-mongol urug‘laridan", "Xitoylik", "Eronlik", "Arab"],
+    javob: "Turk-mongol urug‘laridan"
+  },
+  {
+    savol: "Amir Temurning yurishlari qaysi hududlarni qamrab oldi?",
+    variantlar: ["Markaziy Osiyo, Eron, Hindiston, Qora dengiz va Yaqin Sharq", "Yevropa va Afrika", "Shimoliy Amerika va Avstraliya", "Janubiy Amerika va Antarktida"],
+    javob: "Markaziy Osiyo, Eron, Hindiston, Qora dengiz va Yaqin Sharq"
+  },
+  {
+    savol: "Amir Temur qaysi shaharni poytaxt sifatida tanlagan?",
+    variantlar: ["Samarkand", "Buxoro", "Toshkent", "Bag‘dod"],
+    javob: "Samarkand"
+  },
+  {
+    savol: "Amir Temur kim bilan Angor jangi (1402)da to‘qnash kelgan?",
+    variantlar: ["Osmoniylar sultonligi hukmdori Yalchinkon bilan", "Chingizxon bilan", "Mo‘g‘ulxon bilan", "Eron podshosi bilan"],
+    javob: "Osmoniylar sultonligi hukmdori Yalchinkon bilan"
+  },
+  {
+    savol: "Amir Temur yurishlarida qaysi uslubga ko‘proq tayanardi?",
+    variantlar: ["Tezkor va strategik yurishlar", "Mudofaa harakatlari", "Faqat diplomatik yo‘l", "Kuchli mudofaa va harbiy tizim"],
+    javob: "Tezkor va strategik yurishlar"
+  },
+  {
+    savol: "Amir Temurning davlat boshqaruvidagi asosiy printsipi nima edi?",
+    variantlar: ["Qattiq markazlashgan hokimiyat", "Erkin savdo", "Hududiy mustaqillik", "Demokratiya"],
+    javob: "Qattiq markazlashgan hokimiyat"
+  },
+  {
+    savol: "Amir Temurning jangovar yurishlarida qaysi uslub xos edi?",
+    variantlar: ["Harbiy harakatlarni puxta rejalashtirish va tezkor harakatlar", "Faqat kuchli mudofaa", "Faqat frontal hujum", "Faol diplomatiya"],
+    javob: "Harbiy harakatlarni puxta rejalashtirish va tezkor harakatlar"
+  },
+  {
+    savol: "Amir Temur qaysi sohalarni rivojlantirishga katta e'tibor qaratgan?",
+    variantlar: ["Madaniyat, ilm-fan va arxitektura", "Faqat harbiy sanoat", "Faqat qishloq xo‘jaligi", "Faqat savdo yo‘llari"],
+    javob: "Madaniyat, ilm-fan va arxitektura"
+  },
+  {
+    savol: "Amir Temur o‘z yurishlarida qanday sabablarga ko‘ra muvaffaqiyat qozongan?",
+    variantlar: ["Harbiy strategiya, kuchli boshqaruv va harbiy texnika", "Faqat kuchli qurollar", "Faqat ko‘p son", "Faqat tabiat sharoitlari"],
+    javob: "Harbiy strategiya, kuchli boshqaruv va harbiy texnika"
+  },
+  {
+    savol: "Amir Temurning o‘limidan keyin Temuriylar davrining rivojlanishi qanday kechdi?",
+    variantlar: ["Temuriylar davlati kuchini saqlab qoldi va kengaydi", "Darhol qulab tushdi", "Faqat siyosiy inqiroz bo‘ldi", "Davlat birlashdi va Yevropani egalladi"],
+    javob: "Temuriylar davlati kuchini saqlab qoldi va kengaydi"
+  }
+],
+
+ulugbek: [
+  {
+    savol: "Mirzo Ulug‘bek qachon tug‘ilgan?",
+    variantlar: ["1394 yil", "1336 yil", "1405 yil", "1380 yil"],
+    javob: "1394 yil"
+  },
+  {
+    savol: "Mirzo Ulug‘bek qaysi shaharni poytaxt qilgan?",
+    variantlar: ["Samarqand", "Buxoro", "Toshkent", "Xiva"],
+    javob: "Samarqand"
+  },
+  {
+    savol: "Mirzo Ulug‘bek qaysi sohada mashhur olim edi?",
+    variantlar: ["Astronomiya", "Tibbiyot", "Falsafa", "Adabiyot"],
+    javob: "Astronomiya"
+  },
+  {
+    savol: "Mirzo Ulug‘bek rasadxonasini qaysi shaharda barpo etgan?",
+    variantlar: ["Samarqand", "Buxoro", "Xiva", "Nukus"],
+    javob: "Samarqand"
+  },
+  {
+    savol: "Mirzo Ulug‘bekning mashhur asari nima?",
+    variantlar: ["Zij-i Ulug‘bek", "Qonun al-Mulk", "Almagest", "Kitob al-Jabr"],
+    javob: "Zij-i Ulug‘bek"
+  },
+  {
+    savol: "Mirzo Ulug‘bek kimning avlodi edi?",
+    variantlar: ["Amir Temurning o‘g‘li", "Chingizxonning o‘g‘li", "Jaloliddin Manguberdi", "Tamerlanning ukasi"],
+    javob: "Amir Temurning o‘g‘li"
+  },
+  {
+    savol: "Mirzo Ulug‘bek rasadxonasida qaysi sohalar bilan shug‘ullanganlar?",
+    variantlar: ["Astronomiya va matematika", "Tibbiyot va kimyo", "Adabiyot va san’at", "Falsafa va tarix"],
+    javob: "Astronomiya va matematika"
+  },
+  {
+    savol: "Mirzo Ulug‘bek qachon vafot etgan?",
+    variantlar: ["1449 yil", "1405 yil", "1425 yil", "1453 yil"],
+    javob: "1449 yil"
+  },
+  {
+    savol: "Mirzo Ulug‘bekning hukmdorlik davri qachon boshlanadi?",
+    variantlar: ["1411 yil", "1394 yil", "1400 yil", "1420 yil"],
+    javob: "1411 yil"
+  },
+  {
+    savol: "Mirzo Ulug‘bek qaysi fan yutuqlarini olg‘a surdi?",
+    variantlar: ["Astronomiya va matematika", "Tibbiyot va biologiya", "Adabiyot va tarix", "Kimyo va fizika"],
+    javob: "Astronomiya va matematika"
+  },
+  {
+    savol: "Zij-i Ulug‘bek nimani o‘z ichiga olgan?",
+    variantlar: ["Yulduzlar jadvali va astronomik kuzatuvlar", "Tibbiy maslahatlar", "Tarixiy ma'lumotlar", "Adabiy asarlar"],
+    javob: "Yulduzlar jadvali va astronomik kuzatuvlar"
+  },
+  {
+    savol: "Mirzo Ulug‘bekning asosiy ilmiy hamkori kim edi?",
+    variantlar: ["Alisher Navoiy", "Qozizoda Rumiy", "Beruniy", "Ibn Sino"],
+    javob: "Qozizoda Rumiy"
+  },
+  {
+    savol: "Mirzo Ulug‘bek ilm-fan uchun qanday sharoit yaratgan?",
+    variantlar: ["Ilmiy markazlar va rasadxonalar tashkil etgan", "Faqat harbiy kampaniyalar o‘tkazgan", "Faqat savdogarlar bilan ishlagan", "Faqat madaniy tadbirlar uyushtirgan"],
+    javob: "Ilmiy markazlar va rasadxonalar tashkil etgan"
+  },
+  {
+    savol: "Mirzo Ulug‘bek davrida qaysi ilmiy usul rivojlangan?",
+    variantlar: ["Kuzatuv va aniq hisoblash", "Falsafiy mulohaza", "Nasroniylik ilmi", "Tibbiy amaliyot"],
+    javob: "Kuzatuv va aniq hisoblash"
+  },
+  {
+    savol: "Mirzo Ulug‘bekning Samarqandda barpo etgan rasadxonasi qanday ob’ekt edi?",
+    variantlar: ["Astronomik kuzatuvlar uchun markaz", "Harbiy qal’a", "Savdo markazi", "San’at galereyasi"],
+    javob: "Astronomik kuzatuvlar uchun markaz"
+  }
+],
+
+
+memorchilik: [
+  {
+    savol: "Memorchilikda Samarqand shahrining qaysi yirik yodgorligi mashhur?",
+    variantlar: ["Registon majmuasi", "Hast-Imom majmuasi", "Ark qal’asi", "Bibi-Xonim madrasasi"],
+    javob: "Registon majmuasi"
+  },
+  {
+    savol: "Bibi-Xonim madrasasi qaysi davrda qurilgan?",
+    variantlar: ["Temuriylar davrida", "Samanidlar davrida", "Xorazmshohlar davrida", "Jome’ masjid davrida"],
+    javob: "Temuriylar davrida"
+  },
+  {
+    savol: "Xattotlikda asosan qaysi yozuv turi ishlatilgan?",
+    variantlar: ["Nasx", "Lotin", "Kirill", "Qoraqalpoq"],
+    javob: "Nasx"
+  },
+  {
+    savol: "Miniatyura san’ati nimani anglatadi?",
+    variantlar: ["Kichik hajmdagi rasm chizish san’ati", "Buyuk haykaltaroshlik", "Katta miqdordagi arxiv yozuvlari", "Musiqa ijrosi"],
+    javob: "Kichik hajmdagi rasm chizish san’ati"
+  },
+  {
+    savol: "Temuriylar davrida qaysi shahar madaniyat markazi bo‘lgan?",
+    variantlar: ["Samarqand", "Buxoro", "Xiva", "Toshkent"],
+    javob: "Samarqand"
+  },
+  {
+    savol: "Memorchilikda qaysi element asosiy ahamiyatga ega edi?",
+    variantlar: ["Majmualar va masjidlar", "Fasadlar va haykallar", "Rassomchilik", "Musika"],
+    javob: "Majmualar va masjidlar"
+  },
+  {
+    savol: "Xattotlikda qaysi asar eng mashhur hisoblanadi?",
+    variantlar: ["Qur'on nusxalari", "Tarixiy hujjatlar", "Diniy qo‘llanmalar", "Adabiy risolalar"],
+    javob: "Qur'on nusxalari"
+  },
+  {
+    savol: "Miniatyura san’atining asosiy mavzusi nima edi?",
+    variantlar: ["Tarixiy voqealar va diniy mavzular", "Tabiat manzaralari", "Portretlar", "Hayvonlar rasmlari"],
+    javob: "Tarixiy voqealar va diniy mavzular"
+  },
+  {
+    savol: "Temuriylar davrida memorchilikda qanday materiallar ko‘p ishlatilgan?",
+    variantlar: ["G‘isht, ohaktosh va keramika", "To‘qimachilik", "Metall va yog‘och", "Qog‘oz va ruchka"],
+    javob: "G‘isht, ohaktosh va keramika"
+  },
+  {
+    savol: "Xattotlik san’ati qanday uslublarga bo‘lingan?",
+    variantlar: ["Nasx, ruq'ah, sultoniy", "Realizm, kubizm, impressionizm", "Barokko va rokoko", "G‘arb va Sharq"],
+    javob: "Nasx, ruq'ah, sultoniy"
+  },
+  {
+    savol: "Miniatyura asarlari odatda qaysi materialga chizilgan?",
+    variantlar: ["Qog‘oz va parchalar", "Yog‘och", "Tosh", "Temir"],
+    javob: "Qog‘oz va parchalar"
+  },
+  {
+    savol: "Memorchilikda Registon majmuasi qaysi qismdan tashkil topgan?",
+    variantlar: ["Madrasalar majmuasi", "Masjidlar majmuasi", "Qal'a va saroy", "Hayvon bog‘i"],
+    javob: "Madrasalar majmuasi"
+  },
+  {
+    savol: "Xattotlik san’ati nimaga asoslangan?",
+    variantlar: ["Chiroyli va tartibli yozuv", "Rang-barang suratlar", "Musiqa va raqs", "Haykaltaroshlik"],
+    javob: "Chiroyli va tartibli yozuv"
+  },
+  {
+    savol: "Miniatyura san’atida ko‘proq qaysi ranglar ishlatilgan?",
+    variantlar: ["Yorqin va jonli ranglar", "Qorong‘i va soya ranglar", "Monoxrom ranglar", "Metall ranglar"],
+    javob: "Yorqin va jonli ranglar"
+  },
+  {
+    savol: "Temuriylar davrida madaniyat rivojlanishiga nima sabab bo‘lgan?",
+    variantlar: ["Amir Temur va vorislari homiyligi", "Tinchlik va savdo aloqalari", "Faqat iqtisodiy omillar", "Chegaralarning yopilishi"],
+    javob: "Amir Temur va vorislari homiyligi"
+  }
+],
+
+
+navoiy: [
+  {
+    savol: "Alisher Navoiy qachon tug‘ilgan?",
+    variantlar: ["1441 yil", "1394 yil", "1501 yil", "1412 yil"],
+    javob: "1441 yil"
+  },
+  {
+    savol: "Alisher Navoiy qaysi shaharni vatani hisoblanadi?",
+    variantlar: ["Herat", "Samarqand", "Buxoro", "Toshkent"],
+    javob: "Herat"
+  },
+  {
+    savol: "Alisher Navoiy qaysi tilning rivojiga katta hissa qo‘shgan?",
+    variantlar: ["O‘zbek tili", "Fors tili", "Arab tili", "Turk tili"],
+    javob: "O‘zbek tili"
+  },
+  {
+    savol: "Alisher Navoiy qaysi asari bilan mashhur?",
+    variantlar: ["Xamsa", "Divon", "Gulistan", "Saddai Iskandariy"],
+    javob: "Xamsa"
+  },
+  {
+    savol: "Alisher Navoiy qaysi adabiy janrlarni rivojlantirgan?",
+    variantlar: ["G‘azal, dostondan", "Tragediya, komediya", "Epik she’rlar", "Drama va poema"],
+    javob: "G‘azal, dostondan"
+  },
+  {
+    savol: "Alisher Navoiy qaysi davrda yashagan?",
+    variantlar: ["Temuriylar davri", "Mo‘g‘ullar davri", "Xorazmshohlar davri", "Saljuqiylar davri"],
+    javob: "Temuriylar davri"
+  },
+  {
+    savol: "Alisher Navoiy asarlari qaysi tilda yozilgan?",
+    variantlar: ["Chig‘atoy tili", "Forsa", "Arabcha", "Turkcha"],
+    javob: "Chig‘atoy tili"
+  },
+  {
+    savol: "Alisher Navoiy kimga katta hurmat bilan qaragan?",
+    variantlar: ["Amir Temur", "Jaloliddin Manguberdi", "Mirzo Ulug‘bek", "Chingizxon"],
+    javob: "Amir Temur"
+  },
+  {
+    savol: "Alisher Navoiy qaysi san’at sohalarini qo‘llab-quvvatlagan?",
+    variantlar: ["Adabiyot va musiqa", "Memorchilik va haykaltaroshlik", "Ilm-fan va matematika", "Siyosat va harbiy ishlar"],
+    javob: "Adabiyot va musiqa"
+  },
+  {
+    savol: "Alisher Navoiy asarlarida qaysi mavzular ko‘p ko‘tarilgan?",
+    variantlar: ["Muhabbat, insoniylik va axloq", "Janglar va siyosat", "Din va falsafa", "Iqtisodiyot va savdo"],
+    javob: "Muhabbat, insoniylik va axloq"
+  },
+  {
+    savol: "Alisher Navoiy hayotidagi eng mashhur asarlaridan biri bo‘lgan 'Xamsa' nechta dostonni o‘z ichiga oladi?",
+    variantlar: ["5", "3", "7", "4"],
+    javob: "5"
+  },
+  {
+    savol: "Alisher Navoiy asarlarining asosiy tili sifatida nima qabul qilinadi?",
+    variantlar: ["O‘zbek adabiy tili", "Fors tili", "Arab tili", "Turk tili"],
+    javob: "O‘zbek adabiy tili"
+  },
+  {
+    savol: "Alisher Navoiy qaysi ilmiy markazlarda ta’lim olgan?",
+    variantlar: ["Herat va Samarqand", "Buxoro va Toshkent", "Xiva va Qo‘qon", "Toshkent va Andijon"],
+    javob: "Herat va Samarqand"
+  },
+  {
+    savol: "Alisher Navoiy hayotida qanday lavozimlarni egallagan?",
+    variantlar: ["Siyosiy va ma’muriy lavozimlar", "Faqat olim", "Faqat shoir", "Faqat harbiy yetakchi"],
+    javob: "Siyosiy va ma’muriy lavozimlar"
+  },
+  {
+    savol: "Alisher Navoiy qaysi davlatning madaniy rivojlanishiga katta hissa qo‘shgan?",
+    variantlar: ["Temuriylar davlati", "Xorazmshohlar davlati", "Mo‘g‘ullar imperiyasi", "Saljuqiylar davlati"],
+    javob: "Temuriylar davlati"
+  }
+]
+  };
+
+  document.querySelector('.btn-start').addEventListener('click', () => {
+    const selectedTopics = Array.from(document.querySelectorAll('input[name="mavzu"]:checked')).map(cb => cb.value);
+    const testCount = parseInt(document.getElementById("testCount").value);
+
+   if (selectedTopics.length === 0) {
+      alert("Iltimos kamida 1 ta mavzu tanlang!");
+      return;
+    } else if (selectedTopics.length > 3) {
+      alert("Faqat 3 tagacha mavzu tanlash mumkin!");
+      return;
+    }
+
+    let allTests = [];
+    selectedTopics.forEach(topic => {
+      if (testData[topic]) allTests = allTests.concat(testData[topic]);
+    });
+
+    allTests.sort(() => Math.random() - 0.5);
+    const selectedTests = allTests.slice(0, testCount);
+
+    localStorage.setItem('selectedTests', JSON.stringify(selectedTests));
+    window.location.href = 'math.html';
+  });
+</script>
+
+</body>
+</html>
