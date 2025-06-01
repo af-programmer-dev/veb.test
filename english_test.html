@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+  <meta charset="UTF-8">
+  <title>Test - English</title>
+  <link rel="website icon" type="png" href="v_t.jpg">
+  <style>
+    body { font-family: sans-serif; background: #f0f0f0; padding: 40px; }
+    .box { background: #fff; padding: 20px; border-radius: 8px; max-width: 500px; margin: auto; box-shadow: 0 0 10px rgba(0,0,0,0.1); text-align: center;}
+    h2 { text-align: center; }
+    button { padding: 10px 20px; background: #28a745; color: white; border: none; border-radius: 6px; cursor: pointer; }
+    button:hover { background: #218838; }
+
+    input[type="radio"] {
+      display: none;
+    }
+    input[type="radio"]:checked + label {
+      background-color: #4CAF50;
+      color: white;
+      padding: 5px 10px;
+      border-radius: 5px;
+    }
+
+    #testCount {
+      width: 250px;
+      height: 30px;
+      font-size: 16px;
+      margin-top: 10px;
+    }
+    .btn-center-start {
+      text-align: center;
+    }
+    .center-box-theme {
+      display: inline-block;
+      width: 250px;
+      text-align: left;
+      border-radius: 15px;
+      border: 2px solid white;
+      font-size: 16px;
+    }
+    .btn-start {
+      width: 200px;
+      height: 40px;
+      border-radius: 15px;
+      border: none;
+      font-size: 17px;
+    }
+    .left-icon {
+      text-align: left;
+      position: absolute;
+      top: 60px;
+    }
+    .svg-back-button {
+      width: 29px;
+      height: 29px;
+      text-align: left;
+      cursor: pointer;
+    }
+    .svg-back-button:hover {
+      filter: brightness(1.8);
+    }
+  </style>
+</head>
+<body>
+
+<div class="box">
+  <div class="left-icon">
+    <svg onclick="window.location.href='test_subject.html'" class="svg-back-button" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+    <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5 3 12m0 0 7.5-7.5M3 12h18" />
+
+    </svg>
+  </div>
+
+  <h2 style="color: red;">Ingiliz tili!!!</h2>
+  <h3 style="color: red;">3 ta mavzuni tanlang:</h3>
+
+  <hr>
+  
+  <div class="center-box-theme">
+    <label><input type="checkbox" name="mavzu" value="present"> Present simple</label><br>
+    <label><input type="checkbox" name="mavzu" value="past"> Past simple</label><br>
+    <label><input type="checkbox" name="mavzu" value="future"> Future simple</label><br>
+    <label><input type="checkbox" name="mavzu" value="continus"> Present continus</label><br>
+    <label><input type="checkbox" name="mavzu" value="prepo"> Prepositions</label><br>
+    <label><input type="checkbox" name="mavzu" value="phrasal"> Phrasal verb</label><br>
+    <label><input type="checkbox" name="mavzu" value="question"> Questions</label><br>
+    <label><input type="checkbox" name="mavzu" value="adjective"> Adjective</label><br>
+    <label><input type="checkbox" name="mavzu" value="adverb"> Adverb</label><br>
+    <label><input type="checkbox" name="mavzu" value="have_had"> Have to / Had to</label><br><br>
+  </div>
+
+  <hr>
+
+  <label style="font-size: 20px; color: red;"><strong>Test soni:</strong><br>
+    <select id="testCount">
+      <option value="10">10</option>
+      <option value="15">15</option>
+    </select>
+  </label><br><br>
+
+  <hr>
+
+  <div class="btn-center-start">
+    <button class="btn-start">BOSHLASH</button>
+  </div>
+</div>
+
+<script>
+  // Array ichidagi testlar
+  let testData = {
+    present: [
+      { savol: "I go ... school every day. - Nuqtalar o'rniga so'z qo'ying", variantlar: ["to", "a", "add", "on"], javob: "to" },
+      { savol: "I ... football my friend at school. - Nuqtalar o'rniga so'z qo'ying", variantlar: ["plays", "played", "play", "play for"], javob: "play" },
+      { savol: "She ... English very well. - Nuqtalar o'rniga so'z qo'ying", variantlar: ["speacks", "spock", "spocked", "speack"], javob: "speacks" },
+      { savol: "I ... my friend go to scholl. - Nuqtalar o'rniga so'z qo'ying", variantlar: ["knows", "known", "know", "knew"], javob: "know" },
+      { savol: "I ... to music every day. - Nuqtalar o'rniga so'z qo'ying", variantlar: ["listen", "listening", "listened", "listen for"], javob: "listen" },
+      { savol: "What time ___ she wake up?", variantlar: ["do", "does", "did"], javob: "does" },
+  { savol: "He ___ to school every day.", variantlar: ["go", "goes", "going"], javob: "goes" },
+  { savol: "I ___ tea in the morning.", variantlar: ["drinks", "drinking", "drink"], javob: "drink" },
+  { savol: "___ they play football on Sundays?", variantlar: ["Does", "Do", "Did"], javob: "Do" },
+  { savol: "She ___ like chocolate.", variantlar: ["don't", "doesn't", "isn't"], javob: "doesn't" },
+  { savol: "My brother ___ to music every evening.", variantlar: ["listen", "listens", "listening"], javob: "listens" },
+  { savol: "Where ___ you live?", variantlar: ["does", "are", "do"], javob: "do" },
+  { savol: "We ___ in a big house.", variantlar: ["lives", "live", "are living"], javob: "live" },
+  { savol: "It ___ a lot in November.", variantlar: ["rain", "rains", "raining"], javob: "rains" },
+  { savol: "___ your sister speak French?", variantlar: ["Do", "Does", "Is"], javob: "Does" }
+    ],
+
+    past: [
+  {
+    savol: "I ____ (go) to the store yesterday.",
+    variantlar: ["go", "went", "gone"],
+    javob: "went"
+  },
+  {
+    savol: "She ____ (watch) a movie last night.",
+    variantlar: ["watched", "watches", "watch"],
+    javob: "watched"
+  },
+  {
+    savol: "They ____ (play) football on Sunday.",
+    variantlar: ["played", "play", "playing"],
+    javob: "played"
+  },
+  {
+    savol: "We ____ (eat) dinner at 7 pm.",
+    variantlar: ["ate", "eat", "eaten"],
+    javob: "ate"
+  },
+  {
+    savol: "He ____ (write) a letter last week.",
+    variantlar: ["wrote", "writed", "written"],
+    javob: "wrote"
+  },
+  {
+    savol: "I ____ (see) a beautiful bird yesterday.",
+    variantlar: ["seen", "saw", "see"],
+    javob: "saw"
+  },
+  {
+    savol: "She ____ (buy) a new dress last month.",
+    variantlar: ["buyed", "bought", "buys"],
+    javob: "bought"
+  },
+  {
+    savol: "They ____ (visit) their grandparents last weekend.",
+    variantlar: ["visited", "visits", "visiting"],
+    javob: "visited"
+  },
+  {
+    savol: "We ____ (have) a great time at the party.",
+    variantlar: ["had", "have", "has"],
+    javob: "had"
+  },
+  {
+    savol: "He ____ (drive) to work yesterday.",
+    variantlar: ["drove", "drived", "driven"],
+    javob: "drove"
+  },
+  {
+    savol: "I ____ (take) a shower in the morning.",
+    variantlar: ["took", "taken", "take"],
+    javob: "took"
+  },
+  {
+    savol: "She ____ (meet) her friend at the cafe.",
+    variantlar: ["met", "meet", "meeting"],
+    javob: "met"
+  },
+  {
+    savol: "They ____ (dance) all night.",
+    variantlar: ["danced", "dance", "dancing"],
+    javob: "danced"
+  },
+  {
+    savol: "We ____ (study) English yesterday.",
+    variantlar: ["studied", "study", "studies"],
+    javob: "studied"
+  },
+  {
+    savol: "He ____ (fix) his bike last weekend.",
+    variantlar: ["fixed", "fix", "fixing"],
+    javob: "fixed"
+  }
+],
+
+
+    future: [
+      {
+    savol: "I ____ (go) to the party tomorrow.",
+    variantlar: ["will go", "goes", "went"],
+    javob: "will go"
+  },
+  {
+    savol: "She ____ (visit) her grandmother next week.",
+    variantlar: ["visited", "will visit", "visits"],
+    javob: "will visit"
+  },
+  {
+    savol: "They ____ (play) football this weekend.",
+    variantlar: ["will play", "played", "playing"],
+    javob: "will play"
+  },
+  {
+    savol: "We ____ (have) a meeting on Monday.",
+    variantlar: ["will have", "have", "had"],
+    javob: "will have"
+  },
+  {
+    savol: "He ____ (finish) his homework later.",
+    variantlar: ["will finish", "finished", "finishes"],
+    javob: "will finish"
+  },
+  {
+    savol: "I ____ (buy) a new car next year.",
+    variantlar: ["buy", "will buy", "bought"],
+    javob: "will buy"
+  },
+  {
+    savol: "She ____ (not come) to the party tomorrow.",
+    variantlar: ["will not come", "did not come", "does not come"],
+    javob: "will not come"
+  },
+  {
+    savol: "Will you ____ (help) me with the project?",
+    variantlar: ["helped", "help", "will help"],
+    javob: "help"
+  },
+  {
+    savol: "They ____ (travel) to Spain next summer.",
+    variantlar: ["will travel", "traveled", "travels"],
+    javob: "will travel"
+  },
+  {
+    savol: "He ____ (not eat) lunch at home tomorrow.",
+    variantlar: ["will not eat", "does not eat", "ate"],
+    javob: "will not eat"
+  },
+  {
+    savol: "I ____ (call) you later.",
+    variantlar: ["called", "will call", "call"],
+    javob: "will call"
+  },
+  {
+    savol: "She ____ (start) a new job next month.",
+    variantlar: ["will start", "started", "starts"],
+    javob: "will start"
+  },
+  {
+    savol: "Will they ____ (arrive) on time?",
+    variantlar: ["arrived", "will arrive", "arrive"],
+    javob: "arrive"
+  },
+  {
+    savol: "We ____ (see) you soon.",
+    variantlar: ["will see", "saw", "see"],
+    javob: "will see"
+  },
+  {
+    savol: "He ____ (study) harder next semester.",
+    variantlar: ["will study", "studied", "studies"],
+    javob: "will study"
+  }
+    ],
+
+    continus: [
+    { savol: "I ___ (read) a book now.", variantlar: ["read", "reading", "am reading", "reads"], javob: "am reading" },
+  { savol: "She ___ (watch) TV at the moment.", variantlar: ["is watch", "is watching", "watching", "watches"], javob: "is watching" },
+  { savol: "They ___ (play) football now.", variantlar: ["are playing", "play", "playing", "are play"], javob: "are playing" },
+  { savol: "He ___ (not eat) lunch right now.", variantlar: ["doesn’t eat", "is not eating", "not eating", "isn't eat"], javob: "is not eating" },
+  { savol: "We ___ (study) for the exam.", variantlar: ["are studying", "study", "studying", "studies"], javob: "are studying" },
+  { savol: "What ___ you ___ (do) now?", variantlar: ["do / do", "are / doing", "are / do", "are / doing"], javob: "are / doing" },
+  { savol: "My sister ___ (cook) dinner at the moment.", variantlar: ["cooks", "is cooking", "cooking", "cook"], javob: "is cooking" },
+  { savol: "Look! The baby ___ (cry).", variantlar: ["crying", "cries", "is crying", "is cry"], javob: "is crying" },
+  { savol: "I ___ (not listen) to music now.", variantlar: ["am not listening", "not listen", "don’t listen", "am listening not"], javob: "am not listening" },
+  { savol: "___ they ___ (play) basketball now?", variantlar: ["Do / play", "Are / playing", "Are / play", "Is / playing"], javob: "Are / playing" },
+  { savol: "The students ___ (not write) an essay.", variantlar: ["are not writing", "is not writing", "not writing", "don’t write"], javob: "are not writing" },
+  { savol: "Why ___ he ___ (shout)?", variantlar: ["does / shout", "is / shouting", "is / shout", "is / shouting"], javob: "is / shouting" },
+  { savol: "We ___ (have) lunch now.", variantlar: ["has", "are having", "have", "is having"], javob: "are having" },
+  { savol: "She ___ (not work) today.", variantlar: ["doesn't work", "is not working", "not working", "isn’t work"], javob: "is not working" },
+  { savol: "What ___ they ___ (talk) about?", variantlar: ["are / talking", "do / talk", "are / talk", "is / talking"], javob: "are / talking" }
+    ],
+
+    prepo: [
+    { savol: "The cat is ___ the table.", variantlar: ["in", "on", "at", "under"], javob: "on" },
+  { savol: "The shoes are ___ the bed.", variantlar: ["at", "behind", "under", "over"], javob: "under" },
+  { savol: "We are going ___ the cinema.", variantlar: ["to", "in", "on", "at"], javob: "to" },
+  { savol: "She lives ___ London.", variantlar: ["at", "in", "on", "by"], javob: "in" },
+  { savol: "The picture is hanging ___ the wall.", variantlar: ["in", "on", "at", "to"], javob: "on" },
+  { savol: "He arrived ___ the airport late.", variantlar: ["in", "on", "at", "to"], javob: "at" },
+  { savol: "The keys are ___ your bag.", variantlar: ["in", "on", "at", "under"], javob: "in" },
+  { savol: "The bus stops ___ the corner.", variantlar: ["in", "on", "at", "of"], javob: "at" },
+  { savol: "She is standing ___ the door.", variantlar: ["between", "next", "behind", "near"], javob: "near" },
+  { savol: "He sat ___ me in class.", variantlar: ["next to", "under", "on", "behind"], javob: "next to" },
+  { savol: "We walked ___ the bridge.", variantlar: ["over", "in", "under", "next"], javob: "over" },
+  { savol: "She was born ___ 2005.", variantlar: ["at", "in", "on", "by"], javob: "in" },
+  { savol: "I always wake up ___ 7 a.m.", variantlar: ["in", "at", "on", "by"], javob: "at" },
+  { savol: "The book is ___ the table.", variantlar: ["at", "by", "on", "under"], javob: "on" },
+  { savol: "We met ___ Monday.", variantlar: ["in", "on", "at", "over"], javob: "on" }
+  ],
+    phrasal: [
+    { savol: "I need to look after my little sister today.", variantlar: ["ko‘rib chiqmoq", "g‘amxo‘rlik qilmoq", "kutib olmoq", "izlamoq"], javob: "g‘amxo‘rlik qilmoq" },
+  { savol: "He gave up smoking last year.", variantlar: ["davom etdi", "boshladi", "tark etdi", "qabul qildi"], javob: "tark etdi" },
+  { savol: "Please turn off the lights.", variantlar: ["yoqmoq", "o‘chirmoq", "almashtirmoq", "ko‘chirmoq"], javob: "o‘chirmoq" },
+  { savol: "She ran out of money.", variantlar: ["ko‘p pulga ega bo‘ldi", "pulni yutdi", "pulini tugatdi", "pulni topshirdi"], javob: "pulini tugatdi" },
+  { savol: "I can’t put up with his behavior.", variantlar: ["bardosh bermoq", "qo‘llab-quvvatlamoq", "yodda saqlamoq", "tushunmoq"], javob: "bardosh bermoq" },
+  { savol: "He made up an excuse.", variantlar: ["tozaladi", "bahona o‘ylab topdi", "qaror qildi", "qarshilik ko‘rsatdi"], javob: "bahona o‘ylab topdi" },
+  { savol: "We should set off early in the morning.", variantlar: ["uxlamoq", "yo‘lga chiqmoq", "turmoq", "kutmoq"], javob: "yo‘lga chiqmoq" },
+  { savol: "The plane took off on time.", variantlar: ["qo‘ndi", "kutdi", "uchib ketdi", "kech qoldi"], javob: "uchib ketdi" },
+  { savol: "Don’t give up – try again!", variantlar: ["taslim bo‘lmoq", "sovg‘a bermoq", "yig‘lamoq", "kutmoq"], javob: "taslim bo‘lmoq" },
+  { savol: "He looked up the word in the dictionary.", variantlar: ["qidirmoq", "pastga qaradi", "yodladi", "eshitdi"], javob: "qidirmoq" },
+  { savol: "I’ll pick you up at 6.", variantlar: ["chaqirmoq", "olmoq", "olib ketmoq", "kutmoq"], javob: "olib ketmoq" },
+  { savol: "The car broke down on the way.", variantlar: ["buzildi", "to‘xtadi", "yuvildi", "ketdi"], javob: "buzildi" },
+  { savol: "She came across some old letters.", variantlar: ["yo‘qotdi", "topib oldi (tasodifan)", "ko‘chirdi", "yo‘q qildi"], javob: "topib oldi (tasodifan)" },
+  { savol: "He carried on talking despite the noise.", variantlar: ["to‘xtadi", "davom etdi", "qochdi", "eshitmadi"], javob: "davom etdi" },
+  { savol: "We ran into our old teacher yesterday.", variantlar: ["yugurdik", "uchratdik (tasodifan)", "chaqirdik", "telefon qildik"], javob: "uchratdik (tasodifan)" }
+  ],
+
+    question: [
+  {
+    savol: "your / is / what / name",
+    variantlar: [
+      "What is your name?",
+      "Your name what is?",
+      "Name is what your?",
+      "Is name your what?"
+    ],
+    javob: "What is your name?"
+  },
+  {
+    savol: "where / live / do / you",
+    variantlar: [
+      "Do live where you?",
+      "Where do you live?",
+      "You live where do?",
+      "Where you do live?"
+    ],
+    javob: "Where do you live?"
+  },
+  {
+    savol: "you / how / are",
+    variantlar: [
+      "Are how you?",
+      "You how are?",
+      "How are you?",
+      "How you are?"
+    ],
+    javob: "How are you?"
+  },
+  {
+    savol: "time / is / what / it",
+    variantlar: [
+      "It what is time?",
+      "What time is it?",
+      "Time it is what?",
+      "What is it time?"
+    ],
+    javob: "What time is it?"
+  },
+  {
+    savol: "he / does / work / where",
+    variantlar: [
+      "Where does he work?",
+      "Work he does where?",
+      "Where he does work?",
+      "Does where he work?"
+    ],
+    javob: "Where does he work?"
+  },
+  {
+    savol: "to / want / you / go / where / do",
+    variantlar: [
+      "Where do you want to go?",
+      "Go do you want where to?",
+      "You to go want where do?",
+      "Want to you where go do?"
+    ],
+    javob: "Where do you want to go?"
+  },
+  {
+    savol: "when / start / school / does",
+    variantlar: [
+      "When school start does?",
+      "School does start when?",
+      "When does school start?",
+      "Does school start when?"
+    ],
+    javob: "When does school start?"
+  },
+  {
+    savol: "what / eat / she / does",
+    variantlar: [
+      "Eat does she what?",
+      "What she does eat?",
+      "Does what she eat?",
+      "What does she eat?"
+    ],
+    javob: "What does she eat?"
+  },
+  {
+    savol: "coming / who / is",
+    variantlar: [
+      "Is who coming?",
+      "Who is coming?",
+      "Coming who is?",
+      "Who coming is?"
+    ],
+    javob: "Who is coming?"
+  },
+  {
+    savol: "are / you / going / where",
+    variantlar: [
+      "Are going where you?",
+      "You going where are?",
+      "Where are you going?",
+      "Where you are going?"
+    ],
+    javob: "Where are you going?"
+  },
+  {
+    savol: "he / what / like / does",
+    variantlar: [
+      "Does he like what?",
+      "What like does he?",
+      "What does he like?",
+      "Like he what does?"
+    ],
+    javob: "What does he like?"
+  },
+  {
+    savol: "is / this / what",
+    variantlar: [
+      "What is this?",
+      "This is what?",
+      "Is this what?",
+      "What this is?"
+    ],
+    javob: "What is this?"
+  },
+  {
+    savol: "long / it / how / take / does",
+    variantlar: [
+      "How long does it take?",
+      "Long how it does take?",
+      "Does take how long it?",
+      "Take does it how long?"
+    ],
+    javob: "How long does it take?"
+  },
+  {
+    savol: "do / how / English / learn / you",
+    variantlar: [
+      "Do how you learn English?",
+      "How do you learn English?",
+      "Learn you how English do?",
+      "You English learn do how?"
+    ],
+    javob: "How do you learn English?"
+  },
+  {
+    savol: "know / you / do / answer / the",
+    variantlar: [
+      "Do the answer know you?",
+      "Know do you answer the?",
+      "Do you know the answer?",
+      "You do know answer the?"
+    ],
+    javob: "Do you know the answer?"
+  }
+],
+  adjective: [
+  { savol: "The soup is very ____.", variantlar: ["hot", "quickly", "heat", "warmest"], javob: "hot" },
+  { savol: "She is a ____ dancer.", variantlar: ["beautiful", "beautifully", "beauty", "beautify"], javob: "beautiful" },
+  { savol: "My brother is very ____.", variantlar: ["tall", "tallly", "high", "tallerly"], javob: "tall" },
+  { savol: "That was a ____ story.", variantlar: ["sad", "sadly", "sadness", "sadding"], javob: "sad" },
+  { savol: "The film was ____.", variantlar: ["boring", "bored", "bore", "bores"], javob: "boring" },
+  { savol: "He is a ____ man.", variantlar: ["rich", "richly", "richness", "richest"], javob: "rich" },
+  { savol: "It was a ____ day.", variantlar: ["cold", "coldly", "colderly", "freezing"], javob: "cold" },
+  { savol: "She wore a ____ dress.", variantlar: ["red", "redness", "redly", "reddish"], javob: "red" },
+  { savol: "The task was ____.", variantlar: ["easy", "easily", "ease", "eased"], javob: "easy" },
+  { savol: "He gave me a ____ look.", variantlar: ["strange", "strangely", "stranger", "strangest"], javob: "strange" },
+  { savol: "She is very ____.", variantlar: ["smart", "smartly", "smarterly", "smarts"], javob: "smart" },
+  { savol: "His house is really ____.", variantlar: ["big", "bigly", "biggerly", "bigness"], javob: "big" },
+  { savol: "We saw a ____ mountain.", variantlar: ["huge", "hugely", "huger", "hugest"], javob: "huge" },
+  { savol: "The baby is ____.", variantlar: ["cute", "cutely", "cuterly", "cutter"], javob: "cute" },
+  { savol: "The car is very ____.", variantlar: ["fast", "fastly", "fasterly", "fastestly"], javob: "fast" }
+],
+
+  adverb: [
+  { savol: "He speaks English ____.", variantlar: ["fluently", "fluent", "fluency", "flue"], javob: "fluently" },
+  { savol: "She sings ____.", variantlar: ["beautifully", "beautiful", "beauty", "beautify"], javob: "beautifully" },
+  { savol: "They worked ____.", variantlar: ["hard", "hardly", "harder", "hardness"], javob: "hard" },
+  { savol: "He runs very ____.", variantlar: ["fast", "fasterly", "fastly", "faster"], javob: "fast" },
+  { savol: "The teacher spoke ____.", variantlar: ["clearly", "clear", "clarity", "clearer"], javob: "clearly" },
+  { savol: "She smiled ____.", variantlar: ["happily", "happy", "happiness", "happiest"], javob: "happily" },
+  { savol: "The baby cried ____.", variantlar: ["loudly", "loud", "louder", "loudness"], javob: "loudly" },
+  { savol: "He answered the question ____.", variantlar: ["correctly", "correct", "correction", "correctness"], javob: "correctly" },
+  { savol: "He walks ____.", variantlar: ["slowly", "slow", "slowness", "slowerly"], javob: "slowly" },
+  { savol: "She arrived ____.", variantlar: ["early", "earlierly", "earliest", "earliness"], javob: "early" },
+  { savol: "The student wrote the essay ____.", variantlar: ["neatly", "neat", "neater", "neatest"], javob: "neatly" },
+  { savol: "He looked at me ____.", variantlar: ["angrily", "angry", "anger", "angriest"], javob: "angrily" },
+  { savol: "The dog barked ____.", variantlar: ["loudly", "loud", "louder", "loudest"], javob: "loudly" },
+  { savol: "He laughed ____.", variantlar: ["loudly", "loud", "laugh", "laughing"], javob: "loudly" },
+  { savol: "She danced ____.", variantlar: ["gracefully", "graceful", "grace", "gracely"], javob: "gracefully" }
+],
+
+  have_had: [
+  { savol: "I ____ finish my homework before dinner.", variantlar: ["have to", "had to", "has to", "have"], javob: "have to" },
+  { savol: "She ____ go to the doctor yesterday.", variantlar: ["have to", "has to", "had to", "have"], javob: "had to" },
+  { savol: "They ____ wear uniforms at school.", variantlar: ["has to", "had to", "have to", "having to"], javob: "have to" },
+  { savol: "We ____ wake up early for the trip.", variantlar: ["had to", "have to", "has to", "have"], javob: "have to" },
+  { savol: "He ____ clean his room last weekend.", variantlar: ["have to", "has to", "had to", "have"], javob: "had to" },
+  { savol: "You ____ be quiet in the library.", variantlar: ["had to", "have to", "has to", "have"], javob: "have to" },
+  { savol: "I ____ help my sister with her homework yesterday.", variantlar: ["have to", "had to", "has to", "have"], javob: "had to" },
+  { savol: "They ____ study hard for the exam.", variantlar: ["had to", "have to", "has to", "have"], javob: "have to" },
+  { savol: "My dad ____ work late last night.", variantlar: ["had to", "have to", "has to", "have"], javob: "had to" },
+  { savol: "She ____ cook dinner every evening.", variantlar: ["have to", "has to", "had to", "have"], javob: "has to" },
+  { savol: "We ____ take a taxi because the bus didn't come.", variantlar: ["had to", "have to", "has to", "have"], javob: "had to" },
+  { savol: "He ____ visit his grandparents every month.", variantlar: ["has to", "had to", "have to", "having to"], javob: "has to" },
+  { savol: "I ____ walk home yesterday because I lost my bus pass.", variantlar: ["have to", "had to", "has to", "have"], javob: "had to" },
+  { savol: "You ____ call the teacher yesterday.", variantlar: ["had to", "has to", "have to", "have"], javob: "had to" },
+  { savol: "They ____ bring their own lunch to school.", variantlar: ["had to", "have to", "has to", "having to"], javob: "have to" }
+]
+
+  };
+
+  document.querySelector('.btn-start').addEventListener('click', () => {
+    const selectedTopics = Array.from(document.querySelectorAll('input[name="mavzu"]:checked')).map(cb => cb.value);
+    const testCount = parseInt(document.getElementById("testCount").value);
+
+    if (selectedTopics.length === 0) {
+      alert("Iltimos kamida 1 ta mavzu tanlang!");
+      return;
+    } else if (selectedTopics.length > 3) {
+      alert("Faqat 3 tagacha mavzu tanlash mumkin!");
+      return;
+    }
+
+    let allTests = [];
+    selectedTopics.forEach(topic => {
+      if (testData[topic]) allTests = allTests.concat(testData[topic]);
+    });
+
+    allTests.sort(() => Math.random() - 0.5);
+    const selectedTests = allTests.slice(0, testCount);
+
+    localStorage.setItem('selectedTests', JSON.stringify(selectedTests));
+    window.location.href = 'math.html';
+  });
+</script>
+
+</body>
+</html>
