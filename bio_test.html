@@ -1,0 +1,863 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+  <meta charset="UTF-8">
+  <title>Test - Biologiya</title>
+  <link rel="website icon" type="png" href="v_t.jpg">
+  <style>
+    body { 
+      font-family: sans-serif; 
+      background: #f0f0f0; 
+      padding: 40px; 
+    }
+    .box { 
+      background: #fff; 
+      padding: 20px; 
+      border-radius: 8px; 
+      max-width: 500px; 
+      margin: auto; 
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      text-align: center;
+    }
+    h2 { 
+      text-align: center; 
+    }
+    button { 
+      padding: 10px 20px; 
+      background: #28a745; 
+      color: white; 
+      border: none; 
+      border-radius: 6px; 
+      cursor: pointer; 
+    }
+    button:hover { 
+      background: #218838; 
+    }
+
+    input[type="radio"] {
+      display: none;
+    }
+    input[type="radio"]:checked + label {
+      background-color: #4CAF50;
+      color: white;
+      padding: 5px 10px;
+      border-radius: 5px;
+    }
+
+    #testCount {
+      width: 250px;
+      height: 30px;
+      font-size: 16px;
+      margin-top: 10px;
+    }
+    .btn-center-start {
+      text-align: center;
+    }
+    .center-box-theme {
+      display: inline-block;
+      width: 250px;
+      text-align: left;
+      border-radius: 15px;
+      border: 2px solid white;
+      font-size: 16px;
+    }
+    .btn-start {
+      width: 200px;
+      height: 40px;
+      border-radius: 15px;
+      border: none;
+      font-size: 17px;
+    }
+    .left-icon {
+      text-align: left;
+      position: absolute;
+      top: 60px;
+    }
+    .svg-back-button {
+      width: 29px;
+      height: 29px;
+      text-align: left;
+      cursor: pointer;
+    }
+    .svg-back-button:hover {
+      filter: brightness(1.8);
+    }
+  </style>
+</head>
+<body>
+
+<div class="box">
+  <div class="left-icon">
+    <svg onclick="window.location.href='test_subject.html'" class="svg-back-button" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+    <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5 3 12m0 0 7.5-7.5M3 12h18" />
+
+    </svg>
+  </div>
+
+  <h2 style="color: red;">Biologiya!!!</h2>
+  <h3 style="color: red;">3 ta mavzuni tanlang:</h3>
+
+  <hr>
+  
+  <div class="center-box-theme">
+    <label><input type="checkbox" name="mavzu" value="tayanch"> Tayanch-harakatlanish sistemasi</label><br>
+    <label><input type="checkbox" name="mavzu" value="qon"> Qon aylanish sistemasi</label><br>
+    <label><input type="checkbox" name="mavzu" value="nafas"> Nafas olish</label><br>
+    <label><input type="checkbox" name="mavzu" value="ovqat"> Ovqat hazm qilish</label><br>
+    <label><input type="checkbox" name="mavzu" value="energiya"> Energiya almashinuvi</label><br>
+    <label><input type="checkbox" name="mavzu" value="nerv"> Nerv sistemasi</label><br>
+    <label><input type="checkbox" name="mavzu" value="teri"> Teri va siydik ajratish</label><br>
+    <label><input type="checkbox" name="mavzu" value="kopayish"> Ko'payish va rivojlanish</label><br><br>
+  </div>
+
+  <hr>
+
+  <label style="font-size: 20px; color: red;"><strong>Test soni:</strong><br>
+    <select id="testCount">
+      <option value="10">10</option>
+      <option value="15">15</option>
+    </select>
+  </label><br><br>
+
+  <hr>
+
+  <div class="btn-center-start">
+    <button class="btn-start">BOSHLASH</button>
+  </div>
+</div>
+
+<script>
+  // Array ichidagi testlar
+  let testData = {
+    tayanch: [
+  {
+    savol: "Inson skeleti nechta asosiy qismdan iborat?",
+    variantlar: ["2", "3", "4", "5"],
+    javob: "3"
+  },
+  {
+    savol: "Qaysi suyak bosh skeletiga kiradi?",
+    variantlar: ["Boldir suyak", "Yelka suyak", "Jag‘ suyak", "Son suyak"],
+    javob: "Jag‘ suyak"
+  },
+  {
+    savol: "Mushaklar qanday to‘qimadan tashkil topgan?",
+    variantlar: ["Nerv to‘qima", "Biriktiruvchi to‘qima", "Mushak to‘qimasi", "Epiteliy to‘qima"],
+    javob: "Mushak to‘qimasi"
+  },
+  {
+    savol: "Tayanch-harakatlanish sistemasining asosiy vazifasi?",
+    variantlar: ["Ozuqa yetkazish", "Nafas olish", "Harakatni ta’minlash", "Qon aylanishi"],
+    javob: "Harakatni ta’minlash"
+  },
+  {
+    savol: "Bo‘g‘im nima?",
+    variantlar: ["Mushaklar uchrashadigan joy", "Suyaklar uchrashadigan joy", "Nervlar uchrashadigan joy", "Qon tomirlari uchrashadigan joy"],
+    javob: "Suyaklar uchrashadigan joy"
+  },
+  {
+    savol: "Inson tanasida nechta suyak mavjud?",
+    variantlar: ["106", "206", "306", "406"],
+    javob: "206"
+  },
+  {
+    savol: "Qaysi suyak gavda skeletiga kiradi?",
+    variantlar: ["Boldir suyak", "Orqa umurtqa", "Kaft suyak", "Yelka suyak"],
+    javob: "Orqa umurtqa"
+  },
+  {
+    savol: "Mushaklarning qisqarishi uchun nima kerak?",
+    variantlar: ["Suv", "Oksidlanish", "Energiyaga ega bo‘lgan ATP", "Uglevod"],
+    javob: "Energiyaga ega bo‘lgan ATP"
+  },
+  {
+    savol: "Skelet qanday vazifani bajarmaydi?",
+    variantlar: ["Ichki organlarni himoya qilish", "Harakatni ta'minlash", "Nafas olishni boshqarish", "Tanasozlikni ta’minlash"],
+    javob: "Nafas olishni boshqarish"
+  },
+  {
+    savol: "Qanday mushaklar ixtiyoriy qisqaradi?",
+    variantlar: ["Yurak mushaklari", "Ichki a'zolar mushaklari", "Skelet mushaklari", "Barcha mushaklar"],
+    javob: "Skelet mushaklari"
+  },
+  {
+    savol: "Qaysi bo‘g‘im harakatsiz?",
+    variantlar: ["Tizza bo‘g‘imi", "Yelka bo‘g‘imi", "Bosh suyagi bo‘g‘imi", "Bilak bo‘g‘imi"],
+    javob: "Bosh suyagi bo‘g‘imi"
+  },
+  {
+    savol: "Tizza bo‘g‘imi qanday harakatni amalga oshiradi?",
+    variantlar: ["Aylanish", "Egilish va yozilish", "Surilish", "Bukilish"],
+    javob: "Egilish va yozilish"
+  },
+  {
+    savol: "Kattalarda suyaklar qanday modda hisobiga mustahkamlanadi?",
+    variantlar: ["Yog‘", "Suv", "Kaltsiy tuzlari", "Oqsil"],
+    javob: "Kaltsiy tuzlari"
+  },
+  {
+    savol: "Orqa umurtqa nechta bo‘limdan iborat?",
+    variantlar: ["2", "3", "4", "5"],
+    javob: "5"
+  },
+  {
+    savol: "Skelet mushaklarining xususiyati?",
+    variantlar: ["Avtomatik ishlaydi", "Silliq yuzaga ega", "Ixtiyoriy boshqariladi", "Yurak bilan bog‘liq"],
+    javob: "Ixtiyoriy boshqariladi"
+  }
+],
+
+   qon: [
+  {
+    savol: "Qon aylanish sistemasining asosiy organi qaysi?",
+    variantlar: ["O‘pka", "Yurak", "Miya", "Jig‘"],
+    javob: "Yurak"
+  },
+  {
+    savol: "Yurak necha kameradan iborat?",
+    variantlar: ["2", "3", "4", "5"],
+    javob: "4"
+  },
+  {
+    savol: "Qaysi qon tomirlari yurakdan qon olib chiqadi?",
+    variantlar: ["Venalar", "Arteriyalar", "Kapillyarlar", "Limfa tomirlari"],
+    javob: "Arteriyalar"
+  },
+  {
+    savol: "Qaysi qon tomirlari yurakka qon olib keladi?",
+    variantlar: ["Arteriyalar", "Venalar", "Kapillyarlar", "Aorta"],
+    javob: "Venalar"
+  },
+  {
+    savol: "Aorta nima?",
+    variantlar: ["Yurak kamerasi", "Eng yirik vena", "Eng yirik arteriya", "Qon hujayrasi"],
+    javob: "Eng yirik arteriya"
+  },
+  {
+    savol: "Yurak qanday to‘qimadan tashkil topgan?",
+    variantlar: ["Epiteliy", "Biriktiruvchi", "Mushak", "Nerv"],
+    javob: "Mushak"
+  },
+  {
+    savol: "Qonning tarkibiy qismlaridan biri emas:",
+    variantlar: ["Plazma", "Eritrotsit", "Leykotsit", "Neyron"],
+    javob: "Neyron"
+  },
+  {
+    savol: "Qon tarkibida kislorod tashuvchi hujayra:",
+    variantlar: ["Leykotsit", "Trombosit", "Eritrotsit", "Limfotsit"],
+    javob: "Eritrotsit"
+  },
+  {
+    savol: "Qonning qaysi hujayrasi infektsiyaga qarshi kurashadi?",
+    variantlar: ["Eritrotsit", "Trombosit", "Leykotsit", "Plazma"],
+    javob: "Leykotsit"
+  },
+  {
+    savol: "Qon ivishida ishtirok etuvchi hujayra:",
+    variantlar: ["Trombosit", "Leykotsit", "Eritrotsit", "Limfotsit"],
+    javob: "Trombosit"
+  },
+  {
+    savol: "Yurakning chap qorinchasidan qaysi tomonga qon haydaladi?",
+    variantlar: ["O‘ng bo‘lmachaga", "Arteriyalarga", "O‘pkaga", "Kapillyarlarga"],
+    javob: "Arteriyalarga"
+  },
+  {
+    savol: "Katta qon aylanish doirasi qayerdan boshlanadi?",
+    variantlar: ["O‘ng bo‘lmacha", "Yurakning o‘ng qorinchasi", "Chap qorincha", "Chap bo‘lmacha"],
+    javob: "Chap qorincha"
+  },
+  {
+    savol: "O‘pka arteriyasi qanday qon olib boradi?",
+    variantlar: ["Toza", "Kislorodga boy", "Venoz", "Limfali"],
+    javob: "Venoz"
+  },
+  {
+    savol: "Qaysi qon aylanish doirasida kislorod bilan boyitish sodir bo‘ladi?",
+    variantlar: ["Katta aylanish", "Yurak aylanishi", "O‘pka aylanishi", "Limfa aylanishi"],
+    javob: "O‘pka aylanishi"
+  },
+  {
+    savol: "Qon bosimi eng yuqori bo‘ladigan tomir:",
+    variantlar: ["Arteriya", "Vena", "Kapillyar", "Limfa tomiri"],
+    javob: "Arteriya"
+  }
+],
+    nafas: [
+  {
+    savol: "Nafas olish sistemasining asosiy organi qaysi?",
+    variantlar: ["Yurak", "O‘pka", "Qizilo‘ngach", "Miya"],
+    javob: "O‘pka"
+  },
+  {
+    savol: "Havo burun orqali qayerga o‘tadi?",
+    variantlar: ["Qizilo‘ngachga", "Bronxlarga", "Nafar bo‘shlig‘iga", "Og‘iz bo‘shlig‘iga"],
+    javob: "Nafar bo‘shlig‘iga"
+  },
+  {
+    savol: "Nafas olish jarayonida o‘pkada qaysi gaz qonga o‘tadi?",
+    variantlar: ["Karbonat angidrid", "Azot", "Kislorod", "Vodorod"],
+    javob: "Kislorod"
+  },
+  {
+    savol: "Nafas chiqarishda qaysi gaz tashqariga chiqadi?",
+    variantlar: ["Kislorod", "Azot", "Karbonat angidrid", "Vodorod"],
+    javob: "Karbonat angidrid"
+  },
+  {
+    savol: "Nafas olish tizimi qanday vazifa bajaradi?",
+    variantlar: ["Qon haydaydi", "Organizmni oziqlantiradi", "Kislorod almashinuvi", "Harakatni ta’minlaydi"],
+    javob: "Kislorod almashinuvi"
+  },
+  {
+    savol: "Traxeya nima?",
+    variantlar: ["Burun bo‘shlig‘i", "Havo o‘tkazuvchi quvur", "O‘pka pufagi", "Oziq quvuri"],
+    javob: "Havo o‘tkazuvchi quvur"
+  },
+  {
+    savol: "Bronxlar nima?",
+    variantlar: ["Yurakdan chiqadigan tomirlar", "Qon tomirlari", "O‘pkaga havo olib boruvchi yo‘llar", "Og‘iz bo‘shlig‘i qismi"],
+    javob: "O‘pkaga havo olib boruvchi yo‘llar"
+  },
+  {
+    savol: "Alveolalar nima?",
+    variantlar: ["Yurak kamerasi", "O‘pkadagi mayda pufakchalar", "Havo quvurlari", "Qon tomirlari"],
+    javob: "O‘pkadagi mayda pufakchalar"
+  },
+  {
+    savol: "Kislorod qondan qayerga yetkaziladi?",
+    variantlar: ["Faqat yurakka", "Miya va yurakka", "Tana to‘qimalariga", "O‘pkaga"],
+    javob: "Tana to‘qimalariga"
+  },
+  {
+    savol: "Nafas olish qanday nazorat qilinadi?",
+    variantlar: ["Qon orqali", "Yurak tomonidan", "Markaziy asab tizimi", "Suv orqali"],
+    javob: "Markaziy asab tizimi"
+  },
+  {
+    savol: "Nafas olish va chiqarish harakati qanday mushaklar yordamida amalga oshadi?",
+    variantlar: ["Yurak mushaklari", "Oyoq mushaklari", "Nafas mushaklari (diafragma)", "Silliq mushaklar"],
+    javob: "Nafas mushaklari (diafragma)"
+  },
+  {
+    savol: "Nafas olishda diafragma qanday harakat qiladi?",
+    variantlar: ["Ko‘tariladi", "Pastga tushadi", "Harakatsiz qoladi", "Chapga og‘adi"],
+    javob: "Pastga tushadi"
+  },
+  {
+    savol: "Karbonat angidrid tanada qanday hosil bo‘ladi?",
+    variantlar: ["Nafas olishda", "Oziq moddalarning parchalanishida", "Yurak qisqarishida", "Og‘izda"],
+    javob: "Oziq moddalarning parchalanishida"
+  },
+  {
+    savol: "Alveolalardagi gaz almashinuvi qayerda amalga oshadi?",
+    variantlar: ["Yurakda", "Qizilo‘ngachda", "Kapillyarlarda", "Miya to‘qimasida"],
+    javob: "Kapillyarlarda"
+  },
+  {
+    savol: "Nafas olish sistemasi qanday modda ajratadi?",
+    variantlar: ["Karbonat angidrid", "Yog‘", "Glukoza", "Oqsil"],
+    javob: "Karbonat angidrid"
+  }
+],
+
+
+  ovqat: [
+  {
+    savol: "Ovqat hazm qilish sistemasining boshlanish nuqtasi nima?",
+    variantlar: ["Ichak", "Me’da", "Og‘iz bo‘shlig‘i", "Jigar"],
+    javob: "Og‘iz bo‘shlig‘i"
+  },
+  {
+    savol: "Tishlarning vazifasi nima?",
+    variantlar: ["Havoni tozalash", "Ovqatni kimyoviy parchalanishi", "Ovqatni mexanik maydalash", "Qon ishlab chiqarish"],
+    javob: "Ovqatni mexanik maydalash"
+  },
+  {
+    savol: "Tilning asosiy vazifasi nima?",
+    variantlar: ["Nafas olish", "Ovqatni hazm qilish", "Ta’m bilish va aralashtirish", "Qonni aylantirish"],
+    javob: "Ta’m bilish va aralashtirish"
+  },
+  {
+    savol: "Me’da qanday hazm qilishni amalga oshiradi?",
+    variantlar: ["Faqat mexanik", "Faqat kimyoviy", "Kimyoviy va mexanik", "Hech qanday"],
+    javob: "Kimyoviy va mexanik"
+  },
+  {
+    savol: "Qanday a’zo ovqatni saqlaydi va hazm qiladi?",
+    variantlar: ["Og‘iz", "Me’da", "Qizilo‘ngach", "Yurak"],
+    javob: "Me’da"
+  },
+  {
+    savol: "Ichaklarning vazifasi nima?",
+    variantlar: ["Qonni tozalash", "Oziq moddalarni so‘rib olish", "Nafas olish", "Energiya ishlab chiqarish"],
+    javob: "Oziq moddalarni so‘rib olish"
+  },
+  {
+    savol: "Inson tanasida qaysi a’zo ovqat hazm qilishda fermentlar ishlab chiqaradi?",
+    variantlar: ["Buyrak", "Jigar", "Qon", "Tilda joylashgan bezlar"],
+    javob: "Jigar"
+  },
+  {
+    savol: "Oshqozon shirasida qaysi modda mavjud?",
+    variantlar: ["Oqsil", "Glyukoza", "Pepsin", "Yog‘"],
+    javob: "Pepsin"
+  },
+  {
+    savol: "Qizilo‘ngachning asosiy vazifasi nima?",
+    variantlar: ["Ovqatni aralashtirish", "Qonni aylantirish", "Ovqatni me’daga yetkazish", "Nafas olish"],
+    javob: "Ovqatni me’daga yetkazish"
+  },
+  {
+    savol: "Ovqat qayerda to‘liq hazm bo‘ladi va so‘riladi?",
+    variantlar: ["Og‘izda", "Me’dada", "Ichakda", "Qizilo‘ngachda"],
+    javob: "Ichakda"
+  },
+  {
+    savol: "Jigar qanday vazifani bajaradi?",
+    variantlar: ["Nafasni boshqaradi", "Ovqatni saqlaydi", "Ovqatni dezinfeksiya qiladi va o‘t ishlab chiqaradi", "Neyronlar hosil qiladi"],
+    javob: "Ovqatni dezinfeksiya qiladi va o‘t ishlab chiqaradi"
+  },
+  {
+    savol: "O‘t pufagi qayerda joylashgan?",
+    variantlar: ["Buyrakda", "Jigarda", "Ichakda", "Me’dada"],
+    javob: "Jigarda"
+  },
+  {
+    savol: "Ovqat og‘iz bo‘shlig‘idan keyin qayerga o‘tadi?",
+    variantlar: ["Me’da", "Qizilo‘ngach", "Ichakka", "Burunga"],
+    javob: "Qizilo‘ngach"
+  },
+  {
+    savol: "Hazm bo‘lmagan qoldiqlar qayerga tushadi?",
+    variantlar: ["Jigar", "Ichak", "To‘g‘ri ichakka", "Me’da"],
+    javob: "To‘g‘ri ichakka"
+  },
+  {
+    savol: "Fermentlar nima uchun kerak?",
+    variantlar: ["Qonni aylantirish uchun", "Oziq moddalarni parchalash uchun", "Havoni filtratsiya qilish uchun", "Neyronlarni faollashtirish uchun"],
+    javob: "Oziq moddalarni parchalash uchun"
+  }
+],
+
+
+energiya: [
+  {
+    savol: "Energiya almashinuvi nima?",
+    variantlar: [
+      "Oziq moddalarni yutish",
+      "Organizmdagi energiya ishlab chiqarish va sarflash jarayoni",
+      "Qonni aylantirish",
+      "Hujayralarning o‘sishi"
+    ],
+    javob: "Organizmdagi energiya ishlab chiqarish va sarflash jarayoni"
+  },
+  {
+    savol: "Energiya almashinuvining asosiy manbai nima?",
+    variantlar: [
+      "Oqsillar",
+      "Yog‘lar",
+      "Uglevodlar",
+      "Uglevodlar, yog‘lar va oqsillar"
+    ],
+    javob: "Uglevodlar, yog‘lar va oqsillar"
+  },
+  {
+    savol: "Metabolizm deganda nimani tushunasiz?",
+    variantlar: [
+      "Faqat energiya ishlab chiqarish",
+      "Organizmdagi barcha kimyoviy reaksiyalar",
+      "Yurakning ishlashi",
+      "Hujayraning o‘sishi"
+    ],
+    javob: "Organizmdagi barcha kimyoviy reaksiyalar"
+  },
+  {
+    savol: "Katabolizm nima?",
+    variantlar: [
+      "Murakkab moddalarning oddiyroq moddalarga parchalanishi",
+      "Oddiy moddalardan murakkab moddalar hosil bo‘lishi",
+      "Energiya saqlash",
+      "Yangi hujayralar hosil qilish"
+    ],
+    javob: "Murakkab moddalarning oddiyroq moddalarga parchalanishi"
+  },
+  {
+    savol: "Anabolizm nima?",
+    variantlar: [
+      "Murakkab moddalarning oddiy moddalarga parchalanishi",
+      "Oddiy moddalardan murakkab moddalar hosil bo‘lishi",
+      "Energiya yo‘qotilishi",
+      "Oqsil sintezi"
+    ],
+    javob: "Oddiy moddalardan murakkab moddalar hosil bo‘lishi"
+  },
+  {
+    savol: "Energiya almashinuvida eng ko‘p ishlatiladigan molekula qaysi?",
+    variantlar: [
+      "ATP (adenozin trifosfat)",
+      "DNK",
+      "RNK",
+      "Neyron"
+    ],
+    javob: "ATP (adenozin trifosfat)"
+  },
+  {
+    savol: "ATP nima uchun kerak?",
+    variantlar: [
+      "Hujayra qurilishi uchun",
+      "Energiya tashuvchisi sifatida",
+      "Genetik ma’lumotni saqlash uchun",
+      "Hujayra bo‘linishi uchun"
+    ],
+    javob: "Energiya tashuvchisi sifatida"
+  },
+  {
+    savol: "Qaysi jarayon orqali energiya olinadi?",
+    variantlar: [
+      "Fotosintez",
+      "Glyukoza parchalanishi (qon aylanishda)",
+      "Osmos",
+      "Difuziya"
+    ],
+    javob: "Glyukoza parchalanishi (qon aylanishda)"
+  },
+  {
+    savol: "Glyukoza parchalanishining oxirida hosil bo‘ladigan asosiy energiya manbai?",
+    variantlar: [
+      "ATP",
+      "DNK",
+      "Oksigen",
+      "Vodorod"
+    ],
+    javob: "ATP"
+  },
+  {
+    savol: "Metabolizm uchun zarur modda va gaz qaysilar?",
+    variantlar: [
+      "Kislorod va oziq moddalari",
+      "Karbonat angidrid va suv",
+      "Azot va yog‘lar",
+      "Shakar va oqsillar"
+    ],
+    javob: "Kislorod va oziq moddalari"
+  },
+  {
+    savol: "Energiya almashinuvi uchun zarur bo‘lgan gaz?",
+    variantlar: [
+      "Kislorod",
+      "Azot",
+      "Karbonat angidrid",
+      "Vodorod"
+    ],
+    javob: "Kislorod"
+  },
+  {
+    savol: "Qaysi jarayon energiya ishlab chiqaradi?",
+    variantlar: [
+      "Glyukoza sintezi",
+      "Glyukoza parchalanishi",
+      "Protein sintezi",
+      "DNK sintezi"
+    ],
+    javob: "Glyukoza parchalanishi"
+  },
+  {
+    savol: "Metabolizm jarayonida chiqindilar qaysi modda ko‘rinishida chiqadi?",
+    variantlar: [
+      "Kislorod",
+      "Karbonat angidrid va suv",
+      "Uglevodlar",
+      "Oqsillar"
+    ],
+    javob: "Karbonat angidrid va suv"
+  },
+  {
+    savol: "Organizmdagi energiya ishlab chiqarish jarayoni qayerda sodir bo‘ladi?",
+    variantlar: [
+      "Miya",
+      "Mitoxondriya",
+      "Qon tomirlari",
+      "Xolesterol"
+    ],
+    javob: "Mitoxondriya"
+  },
+  {
+    savol: "Anabolizm va katabolizm birgalikda nima hosil qiladi?",
+    variantlar: [
+      "Metabolizm",
+      "Fotosintez",
+      "Glyukoza",
+      "ATP"
+    ],
+    javob: "Metabolizm"
+  }
+],
+
+
+nerv: [
+  {
+    savol: "Nerv sistemasining asosiy vazifasi nima?",
+    variantlar: ["Harakatni boshqarish", "Moddalar almashinuvi", "Qon aylanishi", "Ovqat hazm qilish"],
+    javob: "Harakatni boshqarish"
+  },
+  {
+    savol: "Asab hujayrasi qanday ataladi?",
+    variantlar: ["Neuron", "Miyosit", "Osteosit", "Lif"],
+    javob: "Neuron"
+  },
+  {
+    savol: "Nerv impulslari qanday tezlikda uzatiladi?",
+    variantlar: ["Sekundda minglab km", "Sekundda 1-120 m/s", "Sekundda 100 km", "Sekundda 10 km"],
+    javob: "Sekundda 1-120 m/s"
+  },
+  {
+    savol: "Markaziy nerv tizimiga nimalar kiradi?",
+    variantlar: ["Miya va orqa miya", "Asab tolalari", "Sensor organlar", "Buyrak va jigar"],
+    javob: "Miya va orqa miya"
+  },
+  {
+    savol: "Periferik nerv tizimi nimalardan iborat?",
+    variantlar: ["Asab tolalari va gangliya", "Miya va orqa miya", "Qon tomirlari", "Hujayralar"],
+    javob: "Asab tolalari va gangliya"
+  },
+  {
+    savol: "Nerv tolalarini qoplagan izolyatsiya qatlami nima?",
+    variantlar: ["Mielin qavati", "Membrana", "Sitoplazma", "Kapsula"],
+    javob: "Mielin qavati"
+  },
+  {
+    savol: "Sinaps nima?",
+    variantlar: ["Nerv impulsining uzatiladigan joyi", "Qon tomiri", "Miyadagi soha", "Mushak"],
+    javob: "Nerv impulsining uzatiladigan joyi"
+  },
+  {
+    savol: "Refleks nima?",
+    variantlar: ["Avtomatik javob", "Xayoliy harakat", "Qasddan bajarilgan ish", "O‘ylab bajarilgan harakat"],
+    javob: "Avtomatik javob"
+  },
+  {
+    savol: "Qaysi qism refleks markazi hisoblanadi?",
+    variantlar: ["Orqa miya", "Miya po‘stlog‘i", "Miya tomiri", "Buyrak"],
+    javob: "Orqa miya"
+  },
+  {
+    savol: "Sensor nerv tolalari vazifasi?",
+    variantlar: ["Impulslarni miyaga olib borish", "Impulslarni muskulgacha yetkazish", "Qonni aylantirish", "Ovqat hazm qilish"],
+    javob: "Impulslarni miyaga olib borish"
+  },
+  {
+    savol: "Motonevron vazifasi?",
+    variantlar: ["Muskullarga impuls yuborish", "Ovqatni hazm qilish", "Qonni haydash", "Hujayralarni ko‘paytirish"],
+    javob: "Muskullarga impuls yuborish"
+  },
+  {
+    savol: "Autonom nerv tizimi nima uchun javob beradi?",
+    variantlar: ["Ichki organlarni boshqarish", "Harakatni boshqarish", "Xotirani boshqarish", "Hissiyotni boshqarish"],
+    javob: "Ichki organlarni boshqarish"
+  },
+  {
+    savol: "Nerv impulsini uzatishda asosiy kimyoviy modda?",
+    variantlar: ["Neurotransmitter", "Glukoza", "Oksigen", "Glikogen"],
+    javob: "Neurotransmitter"
+  },
+  {
+    savol: "Nerv hujayrasining asosiy qismlari?",
+    variantlar: ["Tana, dendrit, akson", "Yadro, plastid, vakuola", "Miyadagi bo‘limlar", "Qon tomirlari"],
+    javob: "Tana, dendrit, akson"
+  },
+  {
+    savol: "Nerv sistemasi yordamida odam nima qilishi mumkin?",
+    variantlar: ["His qilish va harakat qilish", "Yurish va nafas olish", "Oziqlanish va o‘sish", "Ko‘z yosh chiqarish"],
+    javob: "His qilish va harakat qilish"
+  }
+],
+
+
+teri: [
+  {
+    savol: "Teri qaysi vazifani bajaradi?",
+    variantlar: ["Hujayralarni ko‘paytiradi", "Organizmni himoya qiladi", "Ovqat hazm qiladi", "Qonni aylantiradi"],
+    javob: "Organizmni himoya qiladi"
+  },
+  {
+    savol: "Teri qavatlaridan qaysi biri eng tashqari?",
+    variantlar: ["Epidermis", "Dermis", "Gipodermis", "Miyelin"],
+    javob: "Epidermis"
+  },
+  {
+    savol: "Terida joylashgan bezlar qaysi vazifani bajaradi?",
+    variantlar: ["Terini qalinlashtiradi", "Teri namligini ta’minlaydi", "Oqsil ishlab chiqaradi", "Qonni tozalaydi"],
+    javob: "Teri namligini ta’minlaydi"
+  },
+  {
+    savol: "Teridan ajraladigan suyuqlik nima?",
+    variantlar: ["Teri shira", "Siydik", "Ter", "Qon"],
+    javob: "Ter"
+  },
+  {
+    savol: "Siydik ajratish organi qaysi?",
+    variantlar: ["Buyrak", "Jigar", "Oshqozon", "Teri"],
+    javob: "Buyrak"
+  },
+  {
+    savol: "Buyrakning asosiy vazifasi nima?",
+    variantlar: ["Qonni filtrlash", "Ovqat hazm qilish", "Nafas olish", "Hujayralarni himoya qilish"],
+    javob: "Qonni filtrlash"
+  },
+  {
+    savol: "Siydik qayerda yig‘iladi?",
+    variantlar: ["Siydik pufagida", "Jigar", "Oshqozon", "Qon tomirlarida"],
+    javob: "Siydik pufagida"
+  },
+  {
+    savol: "Buyraklarda qaysi jarayon sodir bo‘ladi?",
+    variantlar: ["Filtrlash", "Neyron sintezi", "Ovqat hazm qilish", "Yog‘ ishlab chiqarish"],
+    javob: "Filtrlash"
+  },
+  {
+    savol: "Teri orqali qaysi modda ajraladi?",
+    variantlar: ["Suv va tuzlar", "Qon", "Qon hujayralari", "Oqsillar"],
+    javob: "Suv va tuzlar"
+  },
+  {
+    savol: "Buyrakdan siydik pufagiga o'tadigan kanal nima?",
+    variantlar: ["Siydik yo‘li", "Qon tomiri", "Nerv", "Teri"],
+    javob: "Siydik yo‘li"
+  },
+  {
+    savol: "Siydik pufagi nima vazifani bajaradi?",
+    variantlar: ["Siydikni saqlaydi", "Ovqat hazm qiladi", "Nafas olish", "Qonni tozalaydi"],
+    javob: "Siydikni saqlaydi"
+  },
+  {
+    savol: "Teri qanday himoya vazifasini bajaradi?",
+    variantlar: ["Mikroblardan", "Shakar darajasidan", "Qon aylanishidan", "Nafas olishdan"],
+    javob: "Mikroblardan"
+  },
+  {
+    savol: "Siydik ajratish tizimining buzilishi natijasida nima yuzaga kelishi mumkin?",
+    variantlar: ["Buyrak kasalliklari", "Yurak kasalliklari", "Oshqozon kasalliklari", "Terining qurishi"],
+    javob: "Buyrak kasalliklari"
+  },
+  {
+    savol: "Teri orqali tana harorati qanday boshqariladi?",
+    variantlar: ["Ter ajratadigan ter orqali sovutish bilan", "Qon aylanishi bilan", "Nafas olish orqali", "Ovqat hazm qilish orqali"],
+    javob: "Ter ajratadigan ter orqali sovutish bilan"
+  },
+  {
+    savol: "Buyraklar organizmda qanday moddalarni chiqarib tashlaydi?",
+    variantlar: ["Zaharlı moddalar va ortiqcha suv", "Oqsillar", "Yog‘lar", "Shakar"],
+    javob: "Zaharlı moddalar va ortiqcha suv"
+  }
+],
+
+kopayish: [
+  {
+    savol: "Organizmlarning ko‘payishi nima?",
+    variantlar: ["Yangi organizmlar hosil bo‘lishi", "O‘sish jarayoni", "Ovqat hazm qilish", "Nafas olish"],
+    javob: "Yangi organizmlar hosil bo‘lishi"
+  },
+  {
+    savol: "Qaysi ko‘payish turi hujayra bo‘linishi bilan amalga oshadi?",
+    variantlar: ["Jinsiy ko‘payish", "Jinsiy bo‘lmagan ko‘payish", "Embrion rivojlanishi", "Metabolizm"],
+    javob: "Jinsiy bo‘lmagan ko‘payish"
+  },
+  {
+    savol: "Jinsiy ko‘payishda nima ishtirok etadi?",
+    variantlar: ["Gameta", "Bakteriya", "Virus", "Oqsil"],
+    javob: "Gameta"
+  },
+  {
+    savol: "Organizm rivojlanishi nima?",
+    variantlar: ["O‘sish va murakkablashish jarayoni", "Foydali ovqat hazm qilish", "Energiya ishlab chiqarish", "Nafas olish"],
+    javob: "O‘sish va murakkablashish jarayoni"
+  },
+  {
+    savol: "Jinsiy ko‘payishda yangi organizm qanday hosil bo‘ladi?",
+    variantlar: ["Urug‘lanish natijasida", "Hujayra bo‘linishi bilan", "Ovqat hazm qilish orqali", "Nafas olish orqali"],
+    javob: "Urug‘lanish natijasida"
+  },
+  {
+    savol: "Bakteriyalar qanday ko‘payadi?",
+    variantlar: ["Hujayra bo‘linishi bilan", "Urug‘lanish bilan", "Urug‘dan", "Zarlangandan"],
+    javob: "Hujayra bo‘linishi bilan"
+  },
+  {
+    savol: "Organizm rivojlanishida qanday o‘zgarishlar yuz beradi?",
+    variantlar: ["Ko‘payish va o‘sish", "Faqat ko‘payish", "Faqat o‘sish", "Faqat harakat qilish"],
+    javob: "Ko‘payish va o‘sish"
+  },
+  {
+    savol: "Urug‘lanish jarayoni qayerda sodir bo‘ladi?",
+    variantlar: ["Tuxum hujayrada", "Qon tomirda", "Miyada", "Oshqozonda"],
+    javob: "Tuxum hujayrada"
+  },
+  {
+    savol: "Organizmlarda rivojlanish jarayonining davomiyligi nimaga bog‘liq?",
+    variantlar: ["Turi va sharoitlarga", "Faqat yoshi", "Faqat ovqatga", "Faqat harakatga"],
+    javob: "Turi va sharoitlarga"
+  },
+  {
+    savol: "Jinsiy bo‘lmagan ko‘payishda ota-onaning genetik xususiyatlari qanday bo‘ladi?",
+    variantlar: ["To‘liq o‘xshash", "Aralash", "Birinchisiga o‘xshash", "Yarim o‘xshash"],
+    javob: "To‘liq o‘xshash"
+  },
+  {
+    savol: "Organizmlarning o‘sishi nima?",
+    variantlar: ["Hajmining kattalashishi", "Faqat rivojlanish", "Faqat ko‘payish", "Nafas olish"],
+    javob: "Hajmining kattalashishi"
+  },
+  {
+    savol: "Qaysi organizmlar jinsiy ko‘payadi?",
+    variantlar: ["Ko‘pchilik hayvonlar va o‘simliklar", "Faqat bakteriyalar", "Faqat viruslar", "Faqat yoshlilar"],
+    javob: "Ko‘pchilik hayvonlar va o‘simliklar"
+  },
+  {
+    savol: "Embrion nima?",
+    variantlar: ["Rivojlanayotgan yangi organizm", "Ota organizm", "Oqsil turi", "Hujayra turi"],
+    javob: "Rivojlanayotgan yangi organizm"
+  },
+  {
+    savol: "Jinsiy ko‘payishda genetik material qanday uzatiladi?",
+    variantlar: ["Ikkala ota-onadan ham", "Faqat onadan", "Faqat otadan", "Hech kimdan"],
+    javob: "Ikkala ota-onadan ham"
+  },
+  {
+    savol: "Ko‘payish va rivojlanish organizm uchun nima uchun muhim?",
+    variantlar: ["Turlarning davomiyligini ta’minlash uchun", "Faqat o‘sish uchun", "Faqat harakat uchun", "Faqat ovqatlanish uchun"],
+    javob: "Turlarning davomiyligini ta’minlash uchun"
+  }
+]
+
+
+  };
+
+  document.querySelector('.btn-start').addEventListener('click', () => {
+    const selectedTopics = Array.from(document.querySelectorAll('input[name="mavzu"]:checked')).map(cb => cb.value);
+    const testCount = parseInt(document.getElementById("testCount").value);
+
+    if (selectedTopics.length === 0) {
+      alert("Iltimos kamida 1 ta mavzu tanlang!");
+      return;
+    } else if (selectedTopics.length > 3) {
+      alert("Faqat 3 tagacha mavzu tanlash mumkin!");
+      return;
+    }
+
+    let allTests = [];
+    selectedTopics.forEach(topic => {
+      if (testData[topic]) allTests = allTests.concat(testData[topic]);
+    });
+
+    allTests.sort(() => Math.random() - 0.5);
+    const selectedTests = allTests.slice(0, testCount);
+
+    localStorage.setItem('selectedTests', JSON.stringify(selectedTests));
+    window.location.href = 'math.html';
+  });
+</script>
+
+</body>
+</html>
